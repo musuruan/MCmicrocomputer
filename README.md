@@ -1,4 +1,4 @@
-!(MC microcomputer)[MC_logo.png]
+![MC microcomputer](MC_logo.png)
 
 # Programmi pubblicati da MC microcomputer
 
