@@ -1,0 +1,65 @@
+10 rem *********************************
+20 rem **** alta risoluzione con il ****
+30 rem ****     commodore  64       ****
+40 rem **** di   andrea  damiani    ****
+50 rem *********************************
+60 :
+80 print"{red}":poke53280,3:poke53281,1
+90 x1=-10:x2=10:dy=4:fs=15.95
+100 fork=49152to49222:readp:pokek,p:next
+110 print"{clr}{down}{down}{down}{down}{down}{down}{down}{down}"
+120 print"{right}{right}{right}{right}{right}{right}{right}{right}{rvon}a{rvof}{right}stampa grafico"
+140 print"{down}{right}{right}{right}{right}{right}{right}{right}{right}{rvon}b{rvof}{right}cambiare funzioni"
+150 print"{down}{right}{right}{right}{right}{right}{right}{right}{right}{rvon}c{rvof}{right}introdurre intervalli"
+160 getj$
+170 ifj$="a"then1000
+190 ifj$="b"thenlist2000-3999
+200 ifj$="c"then500
+250 goto160
+500 input"{clr}{right}{right}{right}{right}{down}{down}{down}{down}{down}{down}{down}{down}{down}x1,x2,dy";x1,x2,dy
+510 fs=319/(x2-x1)
+1000 ba=8192:sys49152
+1100 t=dy*fs:ift>199ort<0then1200
+1110 forz=0to319step6
+1120 t=dy*fs
+1130 gosub10000
+1140 next
+1200 ifx1>0orx2<0then2000
+1210 z=fs*(-x1)
+1220 fory=0to199step4
+1230 t=y:gosub10000
+1240 next
+2000 forz=0to319step4:x=z/fs+x1
+2020 y=8*sin(x)/x:gosub9500
+2400 next
+2500 forr=0to199step4:y=r/fs-dy
+2510 x=-y:gosub9000
+3000 next
+4000 poke198,0:wait198,1
+4010 poke53265,peek(53265)and223
+4020 poke53272,peek(53272)and247
+4100 goto110
+9000 z=fs+(x-x1):t=r:ifz<0orz>319thenreturn
+9010 goto10000
+9500 t=y*fs+fs*dy
+10000 t=int(199-t):ift>199ort<0thenreturn
+10010 ch=int(z/8)
+10020 ro=int(t/8)
+10030 ln=y and 7
+10040 by=base+ro*320+8*ch+ln
+10050 bi=7-(zand7)
+10060 pokeby,peek(by)or(2^bi)
+10070 return
+50000 :
+50100 data173,24,208,9,8,141,24,208
+50200 data173,17,208,9,32,141,17,208
+50300 data169,0,133,251,169,32,133,252
+50400 data160,0,169,0,145,251,200,192
+50500 data0,208,249,230,252,169,64,197
+50600 data252,208,239,169,0,133,251,169
+50700 data4,133,252,160,0,169,3,145
+50800 data251,200,192,0,208,249,230,252
+50900 data169,8,197,252,208,239,96
+55000 :
+55555 poke53272,peek(53272)and247
+55556 poke53265,peek(53265)and223:end

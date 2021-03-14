@@ -1,0 +1,17 @@
+63332 printchr$(147)" inserire disco con file di testo seg":print:print
+63333 inizio=8000:open15,8,15:e=128:f=e
+63334 input" nome file ";a$
+63335 open8,8,8,"0:"+a$:print:print:input#15,a,a$:if a goto63347
+63336 fori=in to39000:get#8,a$:a=asc(a$):if a=34 then f=e-f
+63337 g=a and(255-f):pokei,g:printchr$(g);:if a=13 thenf=e
+63338 ifst=0thennext
+63339 fine=i:close8:printchr$(147);:fora=63332to63339:printa:next:goto63344
+63340 printchr$(147);:a=peek(in):ifa<48 ora>57theni=in:goto63343
+63341 fori=in to in+99:printchr$(peek(i));:ifpeek(i)<>13thennext
+63342 print:if(i-in)>80thena$="linea troppo lunga":a=0
+63343 in=i+1:if in >fi then63346
+63344 print"inizio="in":fine="fi":goto63340":if a=0 then63347
+63345 poke198,10:poke631,19:fori=632to632+9:pokei,13:next:end
+63346 printchr$(147);:fori=63340to63347:printi:next:print"list":goto63345
+63347 print:printa$:close8:rem 11/11/87       by i4abg adriano buzzoni
+

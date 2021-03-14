@@ -1,0 +1,238 @@
+1 poke36879,111:printchr$(14)
+2 print"{clr}{wht}{down}{down}{down}{down}      {rvon}{CBM-A}{SHIFT-*}{SHIFT-*}{SHIFT-*}{SHIFT-*}{SHIFT-*}{SHIFT-*}{SHIFT-*}{SHIFT-*}{CBM-S}{down}{left}{left}{left}{left}{left}{left}{left}{left}{left}{left}{SHIFT--}PIRAMIDE{SHIFT--}"
+3 print"      {rvon}{SHIFT--}   DI   {SHIFT--}{down}{left}{left}{left}{left}{left}{left}{left}{left}{left}{left}{SHIFT--} IUNNUH {SHIFT--}"
+4 print"      {rvon}{CBM-Z}{SHIFT-*}{SHIFT-*}{SHIFT-*}{SHIFT-*}{SHIFT-*}{SHIFT-*}{SHIFT-*}{SHIFT-*}{CBM-X}{rvof}"
+5 print"{down}{down}{down}{down}{cyn}    copyright {yel}1984 "
+6 print"{grn}{down}          by"
+7 print"{down}{wht}{rght}{rght}{rght}MIKE software (c)"
+8 gosub1000
+9 pd=0:su=0:tm=0:tp=0:p1=0:c1=1:c2=1:cp=1:m1=1:nn=40:lo=40:nv=30:i$="Sono "
+10 dimp$(24),p1(24,5),ob$(40),ob(40),vb$(nv),no$(40)
+11 gosub427
+19 pd$="ora e' buio pesto! E' pericoloso muoversi alla cieca"
+22 im$="non posso andare da quella parte"
+25 gf$="la porta e' chiusa":ge$="la porta e' aperta"
+28 d$="sono caduto e mi sono rotto la testa"
+31 gosub550
+34 iftmthenob(21)=cp
+37 iftmthenprint" la mummia mi segue"
+40 gosub58
+43 ifvb>8andnp$=""andvb<>16andvb<>29andvb<>30thenprintcm$;" cosa?":goto40
+46 ifnp$<>""and(vb=6orvb=7orvb=8)andno=0thenprint"non ho capito!":goto40
+49 ifvb>12then55
+52 onvbgoto106,136,142,142,31,160,160,160,199,214,214,244
+55 onvb-12goto244,244,271,31,289,304,316,337,355,367,373,379,379,385,400,415,600,700
+58 print:input"{down}cosa devo fare ";cm$:print
+61 np$="":vb$="":vb=0:no=0:fl=0
+64 lc=len(cm$):fori=1tolc:ifmid$(cm$,i,1)=" "theni=lc:goto70
+67 vb$=vb$+mid$(cm$,i,1)
+70 next
+73 v1$=vb$:vb$=mid$(v1$,1,4):fori=1tonv:ifvb$(i)=vb$thenvb=i:i=nv+1:fl=1
+76 next:ifflthen82
+79 vb=6:np$=vb$:goto88
+82 fl=0:iflen(v1$)+1>len(cm$)thenno=0:return
+85 np$=mid$(cm$,len(v1$)+5,len(cm$)-4-len(v1$))
+88 n1$=np$:np$=mid$(np$,1,4):fori=1tonn:ifnp$=no$(i)thenap=i:i=nn+1:fl=1
+91 next:ifflthen97
+94 no=0:return
+97 no=ap:return
+100 print:print"sono morto!":print
+103 fp=1
+106 :
+109 print"hai raggiunto il "
+112 de=0
+115 ifob(8)=-1thende=de+1
+118 ifob(12)=-1thende=de+1
+121 ifob(18)=-1thende=de+1
+124 ifob(20)=-1thende=de+1
+127 printde*25;"%"
+130 ifcp=4andde=4thenprint"bravo!":end
+132 iffp=1thenend
+133 goto40
+136 :
+139 print"ok.":goto103
+142 :
+145 print"ho con me ":gs=0:zz=0
+148 fori=1tolo:ifob(i)=-1thenprintob$(i):gs=gs+1:zz=zz+1
+151 next
+154 ifgs=0thenprint"nulla"
+157 goto40
+160 :
+163 ifno=0thenprint"uh?":goto40
+166 ifnp$<>""andno=0thenprint"non conosco questa parola":goto40
+169 ifno<27andno<>5thenprint"non ti capisco":goto40
+172 ifno>34thenno=no-6
+175 ifcp=5andno=5andc1=0thenprint"ok.":cp=p1(cp,1):goto31
+178 ifcp=8andno=27andp2thenprint"ok.":cp=p1(cp,5):goto31
+181 ifcp=10andno=28andsuthenprint"ok.":cp=p1(cp,4):goto31
+184 ifno<29thenprint"ancora non posso farlo":goto40
+187 no=no-29
+190 if(no+1)andpdthenprintd$:goto100
+193 ifp1(cp,no)=0thenprintim$:goto40
+196 cp=p1(cp,no):goto31
+199 :
+202 ifno=0thenprint"non conosco la parola "n1$:goto40
+205 if(no=4andcp=4)or(no=16andob(16)=-1)thenprint"c'e' scritto qualcosa":goto40
+208 ifcp=24andno=19thenprint"vedo qualcosa":ob(20)=24:gosub900:goto31
+211 print"non vedo nulla di speciale":goto40
+214 :
+217 ifno=0then202
+220 ifob(no)=-1thenprint"ce l'ho gia' con me":goto40
+223 ifob(no)<>cpthenprint"non vedo ";n1$;" qui intorno":goto40
+226 ifno=4orno=5orno=9orno=10orno=15orno=19thenprint"non essere sciocco":goto40
+229 ifno>20thenprint"non fare lo scemo!":goto40
+232 ifzz>4thenprint"non riesco a portare nient'altro":goto40
+235 ifcp=20andno=3thenp$(20)=a0$+aw$:p1(20,1)=0
+238 ifcp=15andno=16andc2thenprint"il cobra mi ha morso!":goto100
+241 zz=zz+1:print"ok.":ob(no)=-1:goto40
+244 :
+247 ifno=0then202
+250 ifob(no)<>-1thenprint"non l'ho con me":goto40
+253 ifno<>3andno<>7andno<>11thenob(no)=cp:goto268
+254 ifnot(no=3andcp=20)then258
+256 print"wow! ora posso andare a sud passando sulla trave":gosub900:gosub900
+257 p$(20)=a0$+az$:p1(20,1)=23:ob(3)=0
+258 ifnot(no=7andcp=10)then262
+259 print"lo scheletro se lo mette sulle spalle e poi tira una leva e una scala";
+260 print" scende dal soffitto"
+262 ifno=7andcp=10thenp1(10,4)=12:ob$(9)=fg$:ob(7)=0:su=1:zz=zz-1:goto40
+265 ifno=11andtm=1thenprint"La mummia prende le bende e se ne va":ob(21)=0:ob(11)=0:tm=0:goto268
+266 if(no=3andcp<>20)or(no=7andcp<>10)or(no=11andtm=0)thenob(no)=cp
+268 zz=zz-1:gosub900:goto31
+271 :
+274 ifno<>5thenprint"uhu?!":goto40
+277 ifcp<>5thenprint"qui non c'e' nulla da aprire":goto40
+280 ifc1=0thenprint"ma e' aperta":goto40
+283 ifob(2)<>-1thenprint"non ho nulla per farlo":goto40
+286 print"ok.":c1=0:p1(5,1)=6:gosub900:goto31
+289 :
+292 ifno<>6thenprint"eh?!":goto40
+295 ifcp<>15thenprint"non accade nulla":goto40
+298 ifob(6)<>-1thenprint"ancora non posso farlo":goto40
+301 print"funziona.Il cobra si allontana":ob(15)=0:c2=0:gosub900:goto31
+304 :
+307 ifno=4andcp=4thenprint"dice: portare qui i tesori":goto40
+313 ifno=16andob(16)=-1thenprint"dice: ondeggiami":goto40
+316 :
+319 ifno<>16thenprint"non capisco":goto40
+322 ifcp<>8thenprint"non succede niente":goto40
+324 ifnot(ob(16)=-1)goto328
+325 print"INCREDIBILE! il muro si illumina e appare un passaggio ";
+326 print"che porta di sotto":p1(8,5)=16
+328 ft$=" c'e' un passaggio che porta di sotto"
+331 p$(8)=mid$(p$(8),1,19)+ft$
+334 gosub900:gosub900:gosub900:goto31
+337 :
+340 ifno<>22andcp>5thenprint"uhu?!":gosub900:goto31
+343 ifno<>22thenprint"ho solo le mani per scavare cosi' scavo la sabbia":goto40
+346 print"scavo con le mani e...":gosub900:gosub900:gosub900
+349 ifcp=2thenprint"trovo qualcosa":ob(2)=2:gosub900:goto31
+352 print"non trovo nulla":goto40
+355 :
+358 ifno<>14andno<>16andno<>2thenprint"non mi piace!":goto40
+361 ifob(14)=-1or(ob(14)=cp)thenprint"ok.":gosub900:gosub900:print"aaghhhh!":goto100
+364 print"ok.":print"non ha un buon sapore":ob(no)=0:gosub900:goto31
+367 :
+370 print"questa non me la bevo":goto40
+373 :
+376 print"meglio lasciare tutto aperto, non si sa mai":goto40
+379 :
+382 print"se ti piace sfasciare vai a giocare agli arcade":goto40
+385 :
+388 ifno<>1thenprint"non scherzare":goto40
+391 ifob(1)<>-1thenprint"accendo cosa ?":goto40
+394 iftpthenprint"e' gia' accesa":goto40
+397 print"ok.":tp=1:goto31
+400 :
+403 ifno<>1thenprint"spiegati meglio":goto40
+406 ifob(1)<>-1thenprint"non posso":goto40
+409 iftp=0thenprint"e' gia' spenta":goto40
+412 print"ok.":tp=0:goto40
+415 :
+418 ifcp<>20thenprint"whee!":goto40
+421 ifcp=20andob(3)<>-1thenprintd$:goto100
+422 print"Non faccio fatica per nulla !":goto40
+424 restore
+427 p$(1)="nel deserto":p$(2)=p$(1):p$(3)=p$(1):p$(4)=p$(1)
+430 p$(5)="nel deserto di fronte a una piramide"
+433 p$(6)="nell'anticamera della piramide di Iunnuh"
+436 ft$="nel muro c'e' incastonato uno zaffiro"
+439 p$(7)="in una stanza triangolare":p$(8)="in una sala bianca "+ft$
+440 p$(9)="in una nicchia"
+442 p$(10)="in un corridoio":p$(11)="in una sala rossa":p$(12)="in una saletta"
+443 p$(13)="nella sala dell'alchimista"
+445 p$(14)="nella sala dell'imbalsamatore":p$(15)="nella sala di IANKHO"
+448 p$(16)="in un tunnel"
+449 p$(17)="in un tunnel.Una scritta sul muro dice:non entrare o morirai"
+451 p$(18)=p$(16):p$(19)="in una stanza verde"
+454 aw$="con un fosso troppo largo perche' io possa saltarlo"
+455 az$="con una trave che fa da passaggio"
+457 a0$="in un cunicolo lungo e stretto,"
+460 p$(20)=a0$+aw$
+463 p$(21)="nella vecchia armeria":p$(22)="nella sala dei geroglifici"
+466 p$(23)="nella sala di hanike":p$(24)="nella cappella funeraria"
+469 data2,4,2,1,0,0,2,3,3,1,0,0,2,5,2,4,0,0
+472 data1,5,3,4,0,0,4,0,3,0,0,0,5,10,7,8,0,0
+475 data0,10,0,6,0,0,0,9,6,0,0,0,8,0,10,0,0,0
+478 data6,0,7,9,0,0,0,13,14,0,0,0,0,15,13,0,0,10,11,15,14,12,0,0,11,0,0,13,0,0
+481 data13,0,0,12,0,0,0,0,17,0,8,0,0,0,18,16,0,0,0,21,19,17,0,0
+484 data0,0,0,18,0,0,0,20,21,0,0,0,18,0,22,20,0,0,0,0,0,21,0,0
+487 data20,24,0,0,0,0,23,0,0,0,0,0
+493 fori=1to24:forj=0to5:readp1(i,j):next:next
+499 datauna torcia,una chiave,una trave di legno,una scritta,una porta,un flauto
+502 fg$="uno scheletro contento"
+505 dataun teschio,"una *COLLANA D'ORO*",uno scheletro senza testa,un altare insanguinato
+506 databende pulite
+508 data"una *SCURE D'ORO*",batterie cariche,droghe,un cobra,"uno *ZAFFIRO*"
+511 datauna spada rotta,"un *ANTICO VASO*",un sarcofago aperto,"una *MASCHERA D'ORO*"
+512 datauna mummia con le bende sporche
+514 fori=1to21:readob$(i):next
+517 data1,0,3,4,5,6,8,9,10,11,11,11,12,13,15,15,16,22,24,0,17
+520 fori=1to21:readob(i):next
+523 datatorc,chia,trav,scri,port,flau,tesc,coll,sche,alta,bend,scur,batt,drog,cobr
+524 datazaff,spad,vaso,sarc,masc,mumm
+526 datasabb,stan,gero,sala,corr,cuni,scal,nord,sud,est,oves,su,giu',n,s,e,o,sopr,sott
+529 fori=1to40:readno$(i):next
+532 datapunt,arre,inve,i,guar,vai,corr,camm,esam,pren,pigl,posa,lasc,dai,apri,*,suon
+533 datalegg,onde,scav,mang,bevi
+535 datachiu,romp,sfon,acce,speg,salt,help,aiut
+538 fori=1tonv:readvb$(i):next
+541 datanord,sud,est,ovest,sopra,sotto
+544 fori=0to5:readdd$(i):next
+545 return
+550 print"{clr}";
+553 ifcp=17andob(21)<>0thentm=1
+556 if(ob(1)<>-1ortp=0)andcp>5thenprintpd$:pd=1:return
+559 printi$;p$(cp):pd=0
+562 if(cp=6orcp=18)andtm=1thenprint"AIUTO! La mummia mi attacca!":goto100
+565 vc$="Vedo: "
+568 fori=1tolo:ifob(i)=cpthenprintvc$;ob$(i):vc$=""
+571 next
+574 ifcp=5andc1thenprintgf$:goto577
+575 ifcp=5andc1=0thenprintge$
+577 :
+580 print"Posso andare a: "
+583 fori=0to5
+586 ifp1(cp,i)<>0thenprintdd$(i);" ";
+589 next
+590 return
+600 fori=1tonvstep2:printvb$(i),vb$(i+1):next
+610 goto40
+700 print"{down}Nessuno puo' aiutarti.":print"Buona fortuna"
+710 print"Ne hai bisogno..."
+720 goto40
+900 forzo=1to1200:next:return
+1000 print"{down}{down}{down}[return] per iniziare";
+1010 getr$:ifr$<>chr$(13)then1010
+1020 print"{clr}{down}Da qualche parte  nel deserto giace la gran=de piramide di Iunnuh.";
+1030 print"Le antiche leggende dicono che sia piena di tesori ma nessun uomo"
+1040 print"che abbia cercato  di svelarne il segreto e'mai tornato indietro"
+1050 print"per raccontarlo."
+1060 print"Io saro' per te occhi e orecchie."
+1070 print"Il tuo compito e' di  portare via tutti i tesori che la piramide  nasconde."
+1080 print"{down}BUONA FORTUNA !!"
+1090 print"Ne avrai bisogno...."
+1100 print"{down}{down}{rght}{rght}{rght}{rght}premi un tasto";
+1110 getr$:ifr$=""then1110
+1120 return
+

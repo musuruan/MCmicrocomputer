@@ -1,0 +1,13 @@
+10 rem  *** diskrandom ***
+11 rem test per il programma
+12 rem       alfadisk
+15 :
+20 x=rnd(0):forx=1to20:a$=""
+30 fory=1to(2+14*rnd(1))
+40 b$=chr$(65+26*rnd(1)):a$=a$+b$
+50 next
+60 savea$,8
+70 next
+80 poke631,147:poke632,76:poke633,201:poke634,13:poke198,4
+90 load"$",8
+

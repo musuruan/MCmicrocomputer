@@ -1,0 +1,26 @@
+30 print"{clr}"
+40 restore:data2,12:forii=1to2:readi
+60 print"{home}{down}{down}{down}{down}   {CBM-@} {CBM-@} {CBM-@}     {CBM-@} {CBM-@} {CBM-@}    {up}";
+70 forj=1toi
+80 print"{right}";:next
+90 a%=rnd(1)*6+1
+120 ifa%=1thena$="323":goto190
+130 ifa%=2thena$="232":goto190
+140 ifa%=3thena$="222":goto190
+150 ifa%=4thena$="121":goto190
+160 ifa%=5thena$="121":goto190
+170 ifa%=6thena$="111":goto190
+190 ifnot(a$<>"")then300
+210 b$=left$(a$,1)
+220 a$=right$(a$,len(a$)-1)
+250 ifval(b$)=1thenprint"{down}{CBM-M}{SHIFT-Q}   {SHIFT-Q}{CBM-G}{15 right}";:goto290
+260 ifval(b$)=2thenprint"{down}{CBM-M}  {SHIFT-Q}  {CBM-G}{15 right}";:goto290
+270 ifval(b$)=3thenprint"{down}{CBM-M}     {CBM-G}{15 right}";:goto290
+290 goto190
+300 next
+310 print"{home}{down}{down}{down}{down}{down}{down}{down}{down}{down}{down}   {CBM-T} {CBM-T} {CBM-T}     {CBM-T} {CBM-T} {CBM-T}";
+330 getz$
+340 ifnot(z$<>"")then330
+350 ifnot(z$="*")then30
+360 end
+

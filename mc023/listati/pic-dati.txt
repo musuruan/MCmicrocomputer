@@ -1,0 +1,44 @@
+20000 print"{clr}{down}{rght}{rght}{rght}{rght}{rght}{rght}{rght}{rvon} pic-man "
+20010 printspc(29)"comandi
+20020 print"[  r  ] in alto
+20030 print"[  c  ] in basso
+20040 print"[  d  ] a sinistra
+20050 print"[  f  ] a destra
+20060 print"[space] salto al buio
+20070 print"{down}scappa dai fantasmini cercando di ripulire  il quadro dai puntini.
+20080 print"quando raggiungi la   pillola di energia","puoi mangiare
+20090 print"i mostri,ma attento:  loro si fanno sempre  piu' furbi!!!
+20100 wait197,64:print"{down}press any key to begin";:wait197,64,64
+20110 poke56,29:poke55,0
+20120 fori=7424to7455:pokei,peek(i+25600):next
+20130 fori=7456to7639:reada:pokei,a:next
+20140 print"{clr}{down}{down}lO"chr$(34)"pic-man"chr$(34)",8
+20150 print"{home}";:poke198,5:poke631,13:poke632,82:poke633,85:poke634,78:poke635,13:end
+20160 rem*caratteri*
+20170 data0,60,66,90,90,66,60,0,255,255,255,255,255,255,255,255
+20180 data153,90,60,24,24,60,36,102,0,140,228,63,63,228,140,0
+20190 data16,56,124,214,254,198,254,170,16,56,124,186,254,214,170,254
+20200 data24,24,126,90,24,60,36,102
+20210 rem*labirinto*
+20220 data127,127,127,64,0,1,91,107,109,80,8,5,85,42,85,69,0,81,85,62,85,80,0,5
+20230 data87,42,117,64,42,1,93,34,93,64,42,1,87,42,117,80,0,5,85,62,85,69,0,81
+20240 data85,42,85,80,8,5,91,107,109,64,0,1,127,127,127
+20250 rem*posizioni*
+20260 rem pillole
+20270 data1,1,19,1,1,19,19,19
+20280 rem mostri
+20290 data3,3,17,3,3,17,17,17
+20300 rem giocatore
+20310 data10,10
+20320 rem*difficolta'*
+20330 data15
+20340 rem*durata pillola al livello 0*
+20350 data20
+20360 rem*ling.macch.*
+20370 data169,1,141,183,3,173,182,3
+20380 data201,40,208,1,96,201,37,208
+20390 data1,96,201,36,208,1,96,201
+20400 data41,208,1,96,160,0,140,183
+20410 data3,201,42,240,1,96,173,184
+20420 data3,141,183,3,96
+

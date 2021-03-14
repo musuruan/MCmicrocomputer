@@ -1,0 +1,133 @@
+0 rem *********************************
+1 rem ** programma tradotto da :     **
+2 rem **                             **
+3 rem **  d a n i e l e   n o r i s  **
+4 rem **                             **
+5 rem *********************************
+6 rem * versione originale: apple ][  *
+7 rem * di m. magnani f. veronese     *
+8 rem *********************************
+9 rem *  2 3   l u g l i o   1 9 8 5  *
+10 poke53280,0:poke53281,0:print"(clr)(yel)",chr$(14)
+11 print"(rvs)(down)(down)(down)(rght)(rght)(rght)(rght)(rght)(rght)(rght)(rght)(rght)(rght) DITELO CON I FIORI (off)"
+12 print"(down)(down)(rght)(rght)(rght)(rght)(rght)(rght)(rght)(rght)(pur)F (grn)L (red)O (orng)W (lred)E (brn)R (wht)S    (gry3)L (lblu)O (lgrn)V (wht)E"
+13 print"(gry3)(down)(down)(down)(rght)(rght)(rght)(rght)(rght)(rght)(rght)(rght)programma tradotto da:":print"(down)(rght)(rght)(rght)(rght)(rght)(rght)(rght)(rght)(grn)Daniele Noris"
+14 print"(gry3)(down)(rght)(rght)(rght)(rght)versione originale per Apple ][":print"(down)(rght)(rght)(rght)(rght)di: M.Magnani e F.Veronese
+15 print"(lblu)(down)(down)(rght)(rght)(rght)(rght)(rght)(rght)(rght)(rght)(rght)(rght)(rght)23 luglio 1985"
+16 print"(down)(down)(rght)(rght)(rght)(rght)(rght)(orng)Premi la barra per continuare":poke198,0:wait198,1
+20 print"(clr)(yel)(down)(down)(rght)(rght)(rght)(rght)(rght)(rght)(rght)(rght)(rght)(rght)(rght)(rght)*** M E N U ***"
+30 printtab(4)"(down)(down)(down)(lblu)(rvs) 1 (off) --- (gry3)Hai ricevuto un fiore"
+40 printtab(4)"(down)(down)(lblu)(rvs) 2 (off) --- (gry3)Devi spedire un fiore"
+50 printtab(4)"(down)(down)(lblu)(rvs) 3 (off) --- (gry3)Elenco fiori"
+60 printtab(4)"(down)(down)(lblu)(rvs) 4 (off) --- (gry3)Elenco messaggi"
+70 printtab(4)"(down)(down)(lblu)(rvs) 5 (off) --- (gry3)Fine"
+80 input"(down)(down)(rght)(rght)(rght)(rght)(yel)Quale -----> (gry3)";a
+120 onagoto130,370,270,490,1060
+130 input"(clr)(down)(down)(down)(down)(gry3)Che fiore hai ricevuto ?";fi$
+140 restore
+150 reada$,b$
+160 ifb$="end"thengoto250
+170 ifb$<>fi$then150
+180 print:print
+190 printfi$"(rght)(rght)Significa":print"(down)(rght)(rght)(yel)<";a$;">"
+200 reada$,b$
+210 ifb$="end"then350
+220 ifb$<>fi$then200
+230 print"(down)(rght)(rght)(gry3)o anche(rght)(yel) <";a$;">"
+240 goto200
+250 print"(gry3)(down)Nessun fiore con quel nome":input"Vuoi vedere la lista deifiori ?";q$
+260 ifq$="n"then20
+270 print"(clr)"
+280 restore
+290 i=1
+300 reada$,b$
+305 fora=0to300:nexta
+310 ifi=5ori=7thengoto340
+312 ifi=8ori=10thengoto340
+314 ifi=33ori=34thengoto340
+316 ifi=37ori=39thengoto340
+318 ifi=41ori=45thengoto340
+320 ifi=20ori=40thenprint"(down)(down)(rght)(rght)(gry3)Premi la barra per continuare":poke198,0:wait198,1:print"(clr)"
+330 print tab(8);b$
+340 i=i+1:if i<48thengoto300
+350 print"(down)(rght)(rght)(gry3)premi la barra per tornare al menu'":poke198,0:wait198,1
+360 goto20
+370 print"(clr)(down)(down)(gry3)Cosa vuoi dire ":input"(down)con un fiore ?";m$
+380 restore
+390 reada$,b$
+400 ifa$="end"thengoto460
+410 ifa$<>m$thengoto390
+420 print:print
+430 print"(yel)<";m$;">";"(gry3)...":print"(down)... ditelo con un fiore del tipo"
+435 print"(down)(down)(rvs)(yel)<";b$;">"
+440 print"(down)(rght)(gry3)Premi la barra per tornare al menu'";:poke198,0:wait198,1
+450 goto20
+460 print"(gry3)(down)Questo messaggio non e' contemplato."
+465 input"(gry3)(down)Vuoi vedere i possibili messaggi ?";k$
+470 ifleft$(k$,1)="s"thenprint"(clr)":goto490
+480 goto20
+490 print"(clr)"
+500 restore
+510 fori=1to47
+520 reada$,b$
+525 fora=0to300:nexta
+530 ifi=20ori=40thenprint"Un tasto per continuare":poke198,0:wait198,1:print"(clr)"
+540 print tab(10);a$
+550 nexti
+560 print"Un tasto qualsiasi per tornare al menu'":poke198,0:wait198,1
+570 goto20
+580 data abbandono,anemone
+590 data amicizia disinteressata,glicine
+600 data amore fisico,orchidea
+610 data amore piacente,narciso
+620 data amore platonico,acacia
+630 data sentimento puro,acacia
+640 data preferenza,anemone
+650 data candore,anemone
+660 data speranza,biancospino
+670 data consolazione,bucaneve
+680 data comprensione,bucaneve
+690 data dispiacere,calendula
+700 data sacrificio,camelia
+710 data riconoscenza e affetto,dalia
+720 data tenerezza e perenne fedelta',edera
+730 data solitudine,erica
+740 data delicatezza,fiordaliso
+750 data richiesta di matrimonio,fiori d'arancio
+760 data compiacenza,fiori di pesco
+770 data fedelta',garofano bianco
+780 data orrore,garofano rosso
+790 data sdegno,garofano giallo
+800 data sensazione,garofano rossato
+810 data benevolenza,giacinto
+820 data sciocchezza,geranio
+830 data purezza,giglio
+840 data pulizia,ginestra
+850 data diffidenza,lavanda
+860 data bellezza superba,magnolia
+870 data ritorno di felicita',mughetto
+880 data freddezza,ortensia
+890 data stordimento,papavero
+900 data dubbio,papavero
+910 data sorpresa,papavero
+920 data credulita' e speranza,primula
+930 data silenzio,rosa bianca
+940 data infedelta',rosa gialla
+950 data vergogna,rosa gialla
+960 data freschezza,rosa rosa
+970 data tenerezza,rosa rosa
+980 data passione,rosa rossa
+990 data innamoramento totale,rosa rossa
+1000 data messaggio d'amore,tulipano
+1010 data sei sempre nella mia mente,viola del pensiero
+1020 data pudore,viola mammola
+1030 data modestia,viola mammola
+1040 data sdegno,viola gialla
+1050 data end,end
+1055 rem*** routine finale ***
+1060 print "(clr)"
+1070 forl=0to10:print:nextl:printtab(8)"(yel)";
+1090 h$="a r r i v e d e r c i  !"
+1100 forf=1tolen(h$):printmid$(h$,f,1);:fort=1to40:nextt,f
+1110 poke198,0:wait198,1:print"(clr)"
+

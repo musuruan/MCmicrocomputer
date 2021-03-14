@@ -1,0 +1,74 @@
+100 print"{clr}":u=2:gosub400:poke36879,93:poke999,0:poke36869,255
+110 print"{home}":fori=7512to7572step3:fora=itoi+2:v=peek(a):forb=6to0step-1:e%=2^b
+120 print"{rvon}{wht}.{rvof}";:ifvande%thenprint"{left}{blu}%";
+130 next:next:print:next
+140 fori=7575to7581step2:a=7702+peek(i)+22*peek(i+1):pokea,36:pokea+30720,4:next
+150 dimx%(4),y%(4),f%(3),v%(4):poke36869,255
+160 deffns(x)=7702+x%(x)+22*y%(x):deffnp(x)=peek(fns(x)):deffnr(x)=int(rnd(1)*x)+1
+170 deffnc(x)=30720+fns(x)
+180 fori=0to4:x%(i)=peek(7583+i*2):y%(i)=peek(7584+i*2):pokefns(i),40-2*(i=4)
+190 v%(i)=32:pokefnc(i),-2*(i=4):next
+200 u=0:fori=8164to8167:u=u-(peek(i)=42):next
+210 p%=0:fori=7680to8185:p%=p%-(peek(i)=174)-5*(peek(i)=36):next
+220 v=7683:gosub430:bo=e%:v=7694:gosub430:lv=e%:gosub400:poke952,0
+230 fordd=peek(7593)/10to1e20step.01*2^lv
+240 gosub650:form=0to3:pokefns(m),v%(m):pokefnc(m),1:gosub320
+250 pokefns(m),40:pokefnc(m),0:nextm,dd:goto230
+260 form=0to3:pokefns(m),41:pokefnc(m),4:f%(m)=0:next:vm=1:poke952,1
+270 forpm=1topeek(7594)-lv:gosub400:gosub650:fori=1to100:next:gosub650
+280 form=0to3:iff%(m)then300
+290 pokefns(m),v%(m):pokefnc(m),1:gosub600:v%(m)=fnp(m):pokefns(m),41:pokefnc(m),4
+300 nextm,pm:fora=1to10:form=0to3:pokefns(m),41:next:forv=0to99:next:form=0to3
+310 pokefns(m),40:pokefnc(m),2:next:forv=0to99:next:next:poke952,0:return
+320 a%=x%(4)-x%(m):b%=y%(4)-y%(m):v=a%*a%+b%*b%:a%=sgn(a%):b%=sgn(b%)
+330 iffnr(dd)<3andv>5+fnr(dd)+lvthena%=fnr(3)-2:b%=fnr(3)-2
+340 x%(m)=x%(m)+a%:y%(m)=y%(m)+b%:gosub390:ifpeek(951)=0then370
+350 y%(m)=y%(m)-b%:gosub390:ifpeek(951)=0then370
+360 x%(m)=x%(m)-a%:y%(m)=y%(m)+b%:gosub390:ifpeek(951)theny%(m)=y%(m)-b%
+370 v%(m)=fnp(m):ifv%(m)=42then450
+380 v%(m)=fnp(m):return
+390 poke950,fnp(m):sys7595:return
+400 print"{home}{pur}{rvon}sc"sc+bo,"lv"lv:printspc(250)spc(212);:ifuthenforv=1tou:print"*";:next
+410 print" ";:ifsc+bo<800orpeek(999)thenreturn
+420 u=u+1:poke999,1:goto400
+430 e%=0:fora=vtov+4:ifpeek(a)<>32thene%=e%*10+peek(a)-176
+440 next:return
+450 pokefnc(4),4:pokefns(4),39:gosub520:pokefns(4),32
+460 ifuthenu=u-1:gosub400:fori=0to4:pokefnc(i),1:next:run150
+470 bo=sc+bo:sc=0:print"{clr}":gosub400
+480 print"{blu}{home}"spc(203)"{rvon} game over ","{down}{rght}giochi ancora(s/n)"
+490 a=peek(197):ifa=41thenrun
+500 ifa<>28then490
+510 print"{clr}{rvon}o.k.!ciao da"spc(67)"{rvof}){rvon} e {rvof}&{rvon}{grn}";:end
+520 v=36878:pokev,15:fori=1to7:pokev-3,asc(mid$("k{rvon}k{rvon}k{rvon}9",i,1))+100
+530 fora=1to200:next:next:fori=1to200:next:fori=15to5step-.07:pokev,i:next
+540 pokev,0:fori=0to3:pokefns(i),v%(i):pokefnc(i),1:next:return
+550 pokefns(4),176+vm:form=0to3:iffns(m)<>fns(4)thennext
+560 f%(m)=1:bo=bo+vm*10:ifv%(m)=174thenv=1:gosub780:v%(m)=32
+570 vm=vm*2:gosub400:fori=1to2000:next:pokefns(4),42:return
+580 pokefns(4),38:fori=1to3000:next:print"{clr}{blu}"spc(203)"{rvon} fine muro",
+590 lv=lv+1:printspc(26)"{rvon} bonus "lv*100:bo=bo+sc+lv*100:sc=0:gosub400:run110
+600 a=fnr(3)-2:b=fnr(3)-2
+610 iffnr(dd)>2thena=sgn(x%(m)-x%(4)):b=sgn(y%(m)-y%(4))
+620 x%(m)=x%(m)+a:gosub390
+630 ifpeek(951)ora=0thenx%(m)=x%(m)-a:y%(m)=y%(m)+b:gosub390:ifpeek(951)theny%(m)=y%(m)-b
+640 return
+650 pokefns(4),32:pokefnc(4),1:a=peek(197)
+660 ifa=32then800
+670 ifa=42thenk%=1:l%=0
+680 ifa=18thenk%=-1:l%=0
+690 ifa=10thenl%=-1:k%=0
+700 ifa=34thenl%=1:k%=0
+710 x%(4)=x%(4)+k%:y%(4)=y%(4)+l%:a=fnp(4):ifa=174thenv=1:goto780
+720 ifa=37orpeek(952)andfnp(4)=36thenx%(4)=x%(4)-k%:y%(4)=y%(4)-l%:goto770
+730 ifa=32then770
+740 ifa=36thenv=5:gosub780:gosub260:goto650
+750 ifa=40then450
+760 goto550
+770 pokefns(4),42:pokefnc(4),2:return
+780 sc=sc+v:ifsc>=p%then580
+790 gosub400:goto770
+800 k%=0:l%=0:iffnr(6)=3then450
+810 x%(4)=fnr(20):y%(4)=fnr(18):iffnp(4)=37then810
+820 goto710
+

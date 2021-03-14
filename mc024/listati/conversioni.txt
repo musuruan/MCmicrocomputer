@@ -1,0 +1,85 @@
+10 REM***********************************************************
+22 REM*********************   CONVERSIONI   *********************
+30 REM*********************   (C) TP 1983   *********************
+40 REM***********************************************************
+50 DIML$(16)
+60 POKE36879,25  :  POKE 650,128  :  PRINT"(CLR)"
+70 PRINT "(RVS)  MENU'      (OFF) 0 (RVS)      "
+80 PRINT "(RVS)  DEC - ESA  (OFF) 1 (RVS)      "
+90 PRINT "(RVS)  ESA - DEC  (OFF) 2 (RVS)      "
+100 PRINT"(RVS)  DEC - BIN  (OFF) 3 (RVS)      "
+110 PRINT"(RVS)  BIN - DEC  (OFF) 4 (RVS)      "
+120 PRINT"(RVS)  STOP       (OFF) 5 (RVS)      "
+130 PRINT"                 -   "  :  INPUT "QUALE OPZIONE  ";  A$
+140 ON VAL (A$) GOSUB 160 , 240 , 360 , 490 , 620      :   GOTO60
+150 GOTO 60
+160 REM ******** D/E ********
+170 HX$="01234567S9ABCDEF":B$="0000":PRINT"(CLR)":PRINT"    DEC   ESA
+180 PRINT:INPUT" ";B:IFB < 0 OR B > 65535 THEN GOSUB 610:GOTO 180
+190 IFB=0THEN230
+200 B$ = "" : W = B : FORI = 1TO4 : W1=INT(W/16) : RS = W - 16*W1
+210 B$=MID$(HX$,(RS+1),1)+B$:W=W1:NEXTI:PRINT"(UP)(UP)":PRINTTAB(10) B$
+220 GOTO 180
+230 RETURN
+240 REM ******** E/D ********
+250 PRINT"(CLR)"  :  PRINT"  ESA    DEC" :  PRINT
+260 PRINT  :  INPUT Z$
+270 IF LEN(Z$) <> 4 AND ASC (Z$) = 48 THEN 60
+280 IF LEN (Z$) <> 4 THEN GOSUB 600 : GOTO260
+290 M=1 : N=0:FORI=1TO4 :CH=ASC(RIGHT$(Z$,I))
+300 IF CH <48 OR CH>70THEN GOSUB 600 :GOTO260
+310 IF CH>57 AND CH<65 THEN GOSUB 600:G0T0260
+320 IF CH > 57 THEN CH = CH - 7
+330 N = N + M * (CH - 48): M = M * 16 : NEXTI
+340 PRINT "(UP)(UP)"  :  PRINT TAB(8)N  :  GOTO 260
+350 RETURN
+360 REM ******** D/B ********
+370 PRINT "(CLR)" : R$ = "0000000000000000" : PRINT"   DEC      BIN "
+380 PRINT : INPUT DC
+390 IF DC < 0 OR DC > 65535  THEN   GOSUB  610     :     GOTO380
+400 IF DC = 0 THEN 480
+410 N$ = "" : VV = DC
+420 V1=INT (VV/2) : T=VV-2*V1 : T$=RIGHT$(STR$(T),1)  :  N$=T$+N$
+430 G$=RIGHT$((R$+N$),16):G2$=RIGHT$(G$,8):G1$=LEFT$(G$,8) :VV=V1
+440 IF V1 <> 0 THEN 420
+450 PRINT  "(UP)(UP)"     :     PRINT TAB(9) G1$;     :     PRINT" MSB"
+460 PRINT  TAB(9) G2$;     :     PRINT" LSB"       :      GOTO380
+470 GOTO 420
+480 RETURN
+490 REM ******** B/D ********
+500 PRINT "(CLR)"             :             PRINT"     BIN        DEC
+510 PRINT : INPUT"MSB";G2$ : IF LEN(G2$)<>8 AND ASC(G2$)=48THEN60
+520 IF LEN (G2$)  <>  8  THEN  GOSUB  600      :       GOTO   510
+530 INPUT "LSB";G1$ : IF LEN (G1$) <> 8 THEN GOSUB 600 :  GOTO510
+540 F$ = G2$ + G1$
+550 FOR I = 1 TO 16  :   L$(I) = MID$(F$ ,(17-I),1)    :    NEXTI
+560 N=0
+570 FORI=0TO15 : R=VAL(L$(I+1)) : IFR<0ORR>1THENGOSUB600 :GOTO510
+580 N=N+R*(2^I) : NEXT I : PRINT "(UP)(UP)" : PRINT TAB(15)N : GOTO 510
+590 RETURN
+600 PRINT " FORMA NON CORRETTA"    :   RETURN
+610 PRINT " VALORE NON PREVISTO"   :   RETURN
+620 PRINT"(CLR)"  :  STOP
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

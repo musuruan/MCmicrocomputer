@@ -1,0 +1,22 @@
+10 REM -----------------------------------
+11 REM ---                             ---
+12 REM ---         PRINT AT            ---
+13 REM --- LA LINEA 30 E' DIMOSTRATIVA ---
+14 REM ---                             ---
+15 REM -----------------------------------
+20 GOSUB 10000
+30 PRINTHH$XX$(2)YY$(15)"MC MICROCOMPUTER"
+9999 END
+10000 DIMXX$(21)
+10005 DIMYY$(22)
+10010 HH$="(HOME)"
+10015 FORKK=0TO21
+10020 XX$=XX$+"(RGHT)"
+10025 XX$(KK)=XX$
+10030 NEXT
+10035 FORKK=0TO22
+10040 YY$=YY$+"(DOWN)"
+10045 YY$(KK)=YY$
+10050 NEXT
+10055 RETURN
+

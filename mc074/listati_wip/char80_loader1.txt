@@ -1,0 +1,92 @@
+10 fast:scnclr:print"(rvs)Char-80 v1.0(off)   BASIC LOADER(down)(down)"
+15 print"(C) 1987 by ($2)DarioSoftware(down)"
+20 print"Wait please...":bank1
+25 restore120:sl=120:sa=4864:tb=38:gosub6000
+30 re=0:forda=0to22:reada$:pokesa+da,dec(a$):re=re+dec(a$):next
+35 readch:ifre<>chthenprint"DATA error in lines 1640-1650":end
+40 print"Insert a disk and press any key...":getkeya$
+50 print"Saving PLOT...":bsave"plot",b1,p4864top7168:clr
+55 restore1660:sl=1660:sa=8192:tb=49:gosub6000
+60 re=0:forda=0to9:reada$:pokesa+da,dec(a$):re=re+dec(a$):next
+65 readch:ifre<>chthenprint"DATA error in line 3620":end
+70 print"Saving EFFECTS...":bsave"effects",b1,p8192top11143
+75 clr:restore3630:sl=3630:sa=16384:tb=9:gosub6000
+80 re=0:forda=0to35:reada$:pokesa+da,dec(a$):re=re+dec(a$):next
+85 readch:ifre<>chthenprint"DATA error in lines 3990-4010":end
+90 print"Saving ICONS...":bsave"icons",b1,p16384top16960:clr
+95 restore4020:sl=4020:sa=20480:tb=4:gosub6000
+100 re=0:forda=0to15:reada$:pokesa+da,dec(a$):re=re+dec(a$):next
+105 readch:ifre<>chthenprint"DATA error in lines 4180-4190":end
+110 print"Saving MESSAGES...":bsave"messages",b1,p20480top20736
+115 print"(down)(down)(rvs)Char-80 v1.0(off) can be run now...":bank15:end
+120 dataa6,fa,86,fc,a2,00,86,fb,86,fd,06,fa,26,fb,06
+130 datafa,26,fb,06,fa,26,fb,06,fa,26,fb,06,fa,26,fb
+140 data06,fa,26,fb,06,fc,26,fd,06,fc,26,fd,06,fc,26
+150 datafd,06,fc,26,fd,18,a5,fa,65,fc,85,fa,a5,fb,65,8894
+160 datafd,85,fb,a5,fe,29,07,85,f9,46,ff,66,fe,46,ff
+170 data66,fe,46,ff,66,fe,18,a5,fa,65,fe,85,fa,a5,fb
+180 data65,ff,85,fb,20,70,13,20,d8,cd,a6,f9,20,97,13
+190 data20,70,13,4c,ca,cd,00,a2,12,8e,00,d6,2c,00,d6,8535
+200 data10,fb,a6,fb,8e,01,d6,a2,13,8e,00,d6,2c,00,d6
+210 data10,fb,a6,fa,8e,01,d6,60,80,40,20,10,08,04,02
+220 data01,a4,8e,f0,0c,c0,01,f0,04,5d,8f,13,60,1d,8f
+230 data13,60,48,bd,8f,13,49,ff,85,fc,68,25,fc,60,a9,6654
+240 data00,8d,00,ff,ad,02,0b,85,fa,ae,00,0b,ac,01,0b
+250 data86,fe,84,ff,c9,c8,90,01,60,c0,03,b0,fb,c0,02
+260 datad0,04,e0,80,b0,f3,4c,00,13,a2,19,a9,87,4c,cc
+270 datacd,a2,19,a9,47,20,cc,cd,20,0c,ce,4c,42,c1,a2,7236
+280 data12,a9,00,20,cc,cd,a2,13,20,cc,cd,aa,a0,40,a9
+290 data1f,8d,00,d6,2c,00,d6,10,fb,a9,00,8d,01,d6,ca
+300 datad0,ee,88,d0,eb,60,a2,02,b5,06,38,f5,02,95,84
+310 datab5,07,f5,03,95,85,a9,01,95,6e,a9,00,95,6f,b5,7264
+320 data03,d5,07,90,1b,d0,06,b5,06,d5,02,b0,13,a9,ff
+330 data95,6e,95,6f,b5,02,38,f5,06,95,84,b5,03,f5,07
+340 data95,85,ca,ca,10,c6,a9,00,85,6a,85,6c,85,6b,85
+350 data6d,a6,84,a4,85,d0,0e,e4,86,b0,0a,a6,86,20,76,7201
+360 data14,85,6a,4c,7f,14,20,76,14,85,6c,4c,7f,14,84
+370 data65,98,4a,86,64,8a,6a,60,a9,00,85,68,85,69,a5
+380 data02,8d,00,0b,a5,03,8d,01,0b,a5,04,8d,02,0b,a5
+390 data64,18,69,01,85,66,a5,65,69,00,85,67,20,b3,13,5223
+400 dataa2,02,b5,6a,18,75,84,95,6a,b5,6b,75,85,95,6b
+410 datac5,65,f0,04,90,25,d0,06,b5,6a,c5,64,90,1d,b5
+420 data6a,e5,64,95,6a,b5,6b,e5,65,95,6b,bd,00,0b,18
+430 data75,6e,9d,00,0b,bd,01,0b,75,6f,9d,01,0b,ca,ca,6833
+440 data10,c4,e6,68,d0,02,e6,69,a5,69,c5,67,90,06,a5
+450 data68,c5,66,b0,03,4c,a1,14,60,a2,03,b5,06,95,02
+460 dataca,10,f9,60,a2,03,bd,10,0b,95,02,ca,10,f8,a5
+470 data04,85,08,a5,05,85,09,ad,20,0b,85,06,ad,21,0b,6169
+480 data85,07,20,14,14,20,f8,14,a5,02,85,06,a5,03,85
+490 data07,ad,22,0b,85,08,ad,23,0b,85,09,20,14,14,20
+500 dataf8,14,a5,04,85,08,a5,05,85,09,ad,10,0b,85,06
+510 dataad,11,0b,85,07,20,14,14,20,f8,14,a2,03,bd,10,4262
+520 data0b,95,06,ca,10,f8,4c,14,14,ad,00,0b,85,fa,ad
+530 data02,0b,85,fb,85,86,a9,d0,85,c2,a9,00,85,c1,a9
+540 data50,85,87,a9,00,85,9e,a2,08,46,87,90,03,18,65
+550 data86,6a,66,9e,ca,d0,f3,85,9f,18,a5,fa,65,9e,85,7251
+560 data9e,90,02,e6,9f,a9,00,85,cb,85,86,85,87,a4,cb
+570 datab9,00,0c,c9,02,d0,07,a9,01,85,86,4c,1e,16,c9
+580 data0e,d0,07,a9,d8,85,c2,4c,1e,16,c9,12,d0,0f,a2
+590 datad4,a5,c2,c9,d8,90,02,a2,dc,86,c2,4c,1e,16,c9,7327
+600 data82,d0,04,a9,00,f0,d5,c9,8e,d0,04,a9,d0,d0,d8
+610 datac9,92,d0,0c,a2,d0,a5,c2,c9,d8,90,df,a2,d8,d0
+620 datadb,c9,20,b0,03,4c,1e,16,c9,40,90,1f,c9,60,b0
+630 data06,38,e9,40,4c,19,16,c9,80,b0,06,38,e9,20,4c,8048
+640 data19,16,c9,a0,90,e1,c9,c0,b0,7f,38,e9,40,85,ca
+650 data20,2a,16,e6,cb,a5,cb,c5,fc,f0,03,4c,a1,15,60
+660 dataa5,ca,85,c8,a9,00,85,c9,06,c8,26,c9,06,c8,26
+670 datac9,06,c8,26,c9,18,a5,c8,65,c1,85,c8,a5,c9,65,8125
+680 datac2,85,c9,a5,9e,85,ae,a5,9f,85,af,a0,00,a2,01
+690 data8e,00,ff,b1,c8,a2,00,8e,00,ff,c0,07,90,06,a6
+700 data86,f0,02,a9,ff,48,a2,12,a5,af,20,cc,cd,a2,13
+710 dataa5,ae,20,cc,cd,68,20,ca,cd,18,a5,ae,69,50,85,7979
+720 dataae,90,02,e6,af,c8,c0,08,d0,c7,e6,9e,d0,02,e6
+730 data9f,60,c9,e0,b0,06,38,e9,80,4c,19,16,c9,ff,b0
+740 data05,38,e9,40,d0,f4,a9,7e,d0,f0,f7,16,ce,17,ab
+750 data18,36,19,ad,44,0b,0a,aa,bd,ac,16,8d,c6,16,bd,8084
+760 dataad,16,8d,c7,16,20,00,00,ce,46,0b,d0,f8,60,86
+770 datafa,84,86,a9,50,85,87,a9,00,85,9e,a2,08,46,87
+780 data90,03,18,65,86,6a,66,9e,ca,d0,f3,85,9f,18,a5
+790 datafa,65,9e,85,9e,90,02,e6,9f,60,20,dd,02,ae,40,7260
+800 data0b,ac,43,0b,20,ce,16,ad,45,0b,f0,26,a2,12,a5
+810 data9f,20,cc,cd,e8,a5,9e,20,cc,cd,a9,00,85,fb,20
+820 datad8,cd,a6,fb,9d,00,0c,e6,fb,a5,fa,cd,42,0b,f0

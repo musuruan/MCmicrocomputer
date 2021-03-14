@@ -1,0 +1,17 @@
+10 fast:scnclr:print"(rvs) Char-80 v1.0 BOOTFILE LOADER"
+20 print"(down)(down)Wait please..."
+30 fori=3840tO3943:reada$:pokei,dec(a$):re=re+dec(a$):next
+40 readch:ifre<>chthenprint"Error in DATA statements !":end
+50 print"(down)Insert (rvs)Char-80 v1.0(off) disk and press a key"
+60 getkeya$:print"(down)Saving BOOT file..."
+70 bsave"boot",b0,p3840top3944
+80 print"(down)To run (rvs)Char-80 v1.0(off) disk reset and type:"
+90 print"(down)BLOAD'BOOT':SYS3872":end
+100 data04,50,4c,4f,54,00,07,45,46,46,45,43,54,53,00
+110 data08,4d,45,53,53,41,47,45,53,00,05,49,43,4f,4e
+120 data53,00,20,dd,02,a9,00,20,90,ff,a9,00,aa,20,3f
+130 dataf7,a9,00,85,fd,85,fe,a6,fe,bd,00,0f,e8,48,8a
+140 data48,bd,00,0f,f0,03,e8,d0,f8,e8,86,fe,a9,01,a6
+150 databa,a8,20,ba,ff,68,aa,68,a0,0f,20,bd,ff,a9,00
+160 data20,d5,ff,e6,fd,a5,fd,c9,04,d0,cf,4c,7d,2b,11832
+

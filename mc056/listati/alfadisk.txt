@@ -1,0 +1,86 @@
+0 :
+10 rem  *************************
+20 rem  *                       *
+30 rem  *    a l f a d i s k    *
+40 rem  *                       *
+50 rem  *  di roberto morassi   *
+60 rem  *                       *
+110 rem *************************
+120 :
+130 dima$,b$,c$,y,i,t,n,x,d,a,b,tr,se,s1:q$=chr$(0):z$=q$+q$+q$
+140 dima$(145)
+150 poke53280,0:print"{cyn}{swlc}{clr}          **** ALFA-DISK ****
+160 print"{lblu}{down}  Inserisci il disco in cui desideri
+170 print"  il directory alfabetico-
+180 print"{down}             {rvon}Premi un tasto{rvof}
+190 geta$:ifa$=""then190
+200 print"{down}  Ecco il directory attuale:":print:gosub820
+210 print"{down}  Il disco e' quello giusto ? (s/n)"
+220 geta$:ifa$=""then220
+230 ifa$<>"s"thenrun
+240 poke53280,7:print"{down}  Leggo e riordino il directory -
+250 se=1:n=0:tr=18
+260 open15,8,15,"i":gosub770
+270 open2,8,2,"#"
+280 print#15,"u1:"2;0;tr;se:gosub770
+290 get#2,a$,c$:tr=asc(a$+q$):se=asc(c$+q$)
+300 d=0:forx=1to8:n=n+1
+310 b$="":fory=1to30:get#2,a$:ifa$=""thena$=q$
+320 b$=b$+a$:next:ifx<8thenget#2,a$,a$
+330 ifleft$(b$,3)=z$thend=1:x=8:n=n-1:goto350
+340 gosub670
+350 next
+360 iftr=0andn=0thenprint"Questo disco e' vergine !":close2:close15:goto160
+370 iftr=0ord=1thenclose2:close15:goto390
+380 goto280
+390 poke53280,2:print"{down}  OK ! Ora lo riscrivo sul disco -":print
+400 print"  (Attenzione: i files {rvon}cancellati
+410 print"  sono indicati in {rvon}reverse{rvof} !)":print
+420 forx=1ton:l=0
+430 l=l+1:if(mid$(a$(x),l,1)<>q$)and(l<17)then430
+440 ifl=17thena$(x)=right$(a$(x),3)+left$(a$(x),27):goto460
+450 a$(x)=right$(a$(x),3)+left$(a$(x),l-1)+chr$(160)+mid$(a$(x),l+1,27-l)
+460 next
+470 open15,8,15,"i":gosub770
+480 open2,8,2,"#"
+490 se=1:a=int(n/8):b=nand7:ifb=0thena=a-1:b=8
+500 n=0
+510 forx=0toa:t=8+(8-b)*(x=a)
+520 print#15,"u1:"2;0;18;se:gosub770:s1=se
+530 get#2,a$,a$:se=asc(a$+q$)
+540 fory=1tot:n=n+1:print#2,a$(n);:ify<8thenprint#2,q$;q$;
+550 ifasc(a$(n))=0thenprint"{rvon}";
+560 printmid$(a$(n),4,16)"{rvof}":next
+570 print#15,"b-p"2;0
+580 print#15,"u2:"2;0;18;s1:gosub770
+590 next
+600 close2:close15
+610 poke53280,14:print"{down}       Operazione conclusa -
+620 print"{down}  Ecco il nuovo directory:":print:gosub820
+630 print"{down}Vuoi ripetere con un altro disco ? (s/n)
+640 geta$:ifa$=""then640
+650 ifa$="s"thenrun
+660 end
+670 l=0
+680 l=l+1:if(mid$(b$,3+l,1)<>chr$(160))and(l<17)then680
+690 ifl=17thenb$=right$(b$,27)+left$(b$,3):goto710
+700 b$=mid$(b$,4,l-1)+q$+mid$(b$,4+l,27-l)+left$(b$,3)
+710 fory=1ton
+720 ifn=1thena$(n)=b$:goto740
+730 ifb$<=a$(y)ory=nthengosub750:a$(y)=b$:y=n
+740 next:return
+750 fort=ntoystep-1
+760 a$(t)=a$(t-1):next:return
+770 input#15,en,em$,et,es:ifen<20thenreturn
+780 printen;em$;et;es
+790 close2:close15
+800 print"{rvon}cont{rvof} ripete la scrittura del directory !":stop
+810 goto 390
+820 open15,8,15,"i":gosub770
+830 open1,8,0,"$":gosub770
+840 get#1,a$,a$
+850 get#1,a$,a$,b$,c$:x=st:ifx=0thenprintasc(b$+q$)+256*asc(c$+q$);
+860 ifstthenprint:close1:close15:return
+870 get#1,a$:ifa$=""thenprint:goto850
+880 printa$;:goto870
+

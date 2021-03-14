@@ -1,0 +1,87 @@
+90 rem *******************************
+92 rem **  briscola    di c.borreo  **
+94 rem **  versione per il  cbm 64  **
+96 rem **  adattamento di l. sorge  **
+98 rem *******************************
+110 poke53281,5:dimm%(39),v%(9),c(2),p(2),a%(3),t%(3)
+120 deffnr(x)=int(rnd(0)*x):deffnv(x)=int(m%(x)/4):deffns(x)=m%(x)and3
+130 deffnp(x)=((sc=b)<(sp=b))or((sp=b)=(sc=b))and((sc=spandvc>vp)or(sc<>spandt=2))
+140 gosub790:t=fnr(2)+1:printspc(204)tab(14) "{blk}carte a "chr$(70+7*t)"e{blu}
+160 fori=0to9:v%(i)=asc(mid$("00000234:;",i+1))-48:next
+170 fori=0to39:m%(i)=i:next:fori=0to39:e=fnr(40):b=m%(e):m%(e)=m%(i):m%(i)=b:next
+180 fori=0to2:p(i)=i+3:c(i)=i:t%(fns(i))=-(fnv(i)=8):a%(fns(i))=-(fnv(i)=9):next
+190 b=fns(39):d=2:form=6to38step2:gosub870:gosub930:next
+200 gosub870:gosub930:p(pg)=p(2):c(cg)=c(2):d=1:gosub870
+210 ontgosub390,780
+220 ontgosub710,390
+230 gosub580:pg=1-pg:cg=1-cg:print"{clr}":ontgosub810,820
+240 gosub580:gosub790:printspc(5900)"{blu}fine carte":print"punti miei ="mc:print"punti tuoi ="mp
+250 ifmc>mpthenprint"{down}vinco io
+260 ifmc=mpthenprint"{down}pareggio
+270 ifmc<mpthenprint"{down}vinci tu
+280 printspc(132)"giochi ancora (s/n) ?{up}
+290 b=peek(197):ifb=13thenrun
+300 ifb<>39then290
+310 gosub790:printspc(225)"{rvon}{red} game over ":fori=0to99:next
+320 print"{clr}{down}{down}ready0":end
+340 print"{home}{blk}gioca la carta: 1,2,3?":poke198,0
+350 getv$:ifv$<"1"orv$>"3"then350
+360 pg=val(v$)-1
+370 n=p(pg):sp=fns(n):vp=fnv(n)
+380 print"{home}{blk}"spc(56+t*7):goto830
+390 print"{home}{blk}scegli:1 o 2?         ":poke198,0
+400 getv$:on2+(v$<"1"orv$>"2")goto400,360
+410 gosub460:f=(m=38)*(v%(fnv(39))*106+3)-1.2
+420 e=-99:forcg=0to2:gosub570:j=-(1+2*fnp(0))*(v%(vp)+v%(vc)+f)+3.4*(b=sc)
+430 ifmc<=60andfnp(0)andmc+v%(vp)+v%(vc)>60then550
+440 ifj>ethene=j:i=cg
+450 next:cg=i:goto550
+460 print"{home}{blk}tocca a me:io gioco  ":return
+470 gosub460:e=99
+480 forcg=0to2:gosub570
+490 f=(vc=8anda%(sc)=0)*32
+500 j=11*(1-a%(sc))+10*(1-t%(sc))
+510 j=j-6*(sc=b)-v%(vc)*(v%(vc)>4)*3-f
+520 ifm=38andfnv(39)>5thenj=-f-15*(sc=b)-v%(vc)
+530 ifj<ethene=j:i=cg
+540 next:cg=i
+550 print"{home}{blk}"spc(77-7*t)
+560 n=c(cg):gosub830
+570 sc=fns(c(cg)):vc=fnv(c(cg)):return
+580 e=v%(vp)+v%(vc):iffnp(0)thenprint"{home}prendo io             ":mc=mc+e:goto600
+590 print"{home}{blk}prendi tu             ":mp=mp+e
+600 i=m+1+fnp(0)
+610 p(pg)=m-fnp(0):c(cg)=i:ifm=40then640
+620 iffnv(i)=8thent%(fns(i))=1
+630 iffnv(i)=9thena%(fns(i))=1
+640 print"{blk}premi un tasto":wait197,64,64
+650 t=1-fnp(0)
+660 ifvp=9thena%(sp)=1
+670 ifvc=9thena%(sc)=1
+680 ifvp=8thent%(sp)=1
+690 ifvc=8thent%(sc)=1
+700 return
+710 gosub460:g1=pg:s1=sp:v1=vp:cg=0:gosub570:gosub770:f=j
+720 t=1-fnp(0):cg=1:gosub570:pg=1-g1
+730 sp=fns(p(pg)):vp=fnv(p(pg)):gosub770:w=w+j:cg=-(f<w):gosub570
+760 pg=g1:sp=s1:vp=v1:t=1:goto550
+770 j=-(1+2*fnp(0))*(v%(vp)+v%(vc)):return
+780 gosub460:cg=1:goto550
+790 goto800
+800 print"{down}{down}{blk}                               ":return
+810 gosub370:goto550
+820 gosub550:goto370
+830 v$="{blk}"+mid$("24567jqk3a",fnv(n)+1,1)+"{blu}":s$=mid$("{blk}X{blk}A{red}Z{red}S",fns(n)*2+1,2)+"{blu}
+840 c$="{blk}B{left}{left}{left}{left}{left}{down}{SHIFT--}":print"{blk}U{SHIFT-*}{SHIFT-*}{SHIFT-*}I"spc(35)"{blk}{SHIFT--}"v$"  "c$s$"  "c$"   "c$" "s$;
+850 print" "c$"   "c$"  "s$c$"  "v$;
+860 print"{blk}B"spc(35)"{blk}J{SHIFT-*}{SHIFT-*}{SHIFT-*}K{left}{left}{left}{up}{up}{up}{up}{up}{up}{up}{up}";:return
+870 print"{clr}{down}{down}{down}{down}{down}{down}{down}{down}{down}{down}{down}{down}{down}"spc(28)
+880 forq=0tod:n=p(q):gosub830:next
+890 ifm>38thenreturn
+900 n=39:print"{home}{down}{down}{down}{down}{down}{down}{down}{down}{down}{down}"spc(9);:gosub830
+910 printspc(122)"{blk}U{SHIFT-*}{SHIFT-*}{SHIFT-*}{SHIFT-*}{SHIFT-*}I
+920 forq=1to5:printtab(13)"B{blu}{CBM-B}{CBM-B}{CBM-B}{CBM-B}{CBM-B}{blk}{SHIFT--}":next:printtab(13)"{blk}J{SHIFT-*}{SHIFT-*}{SHIFT-*}{SHIFT-*}{SHIFT-*}K":return
+930 ontgosub340,470
+940 ontgosub410,340
+950 goto580
+

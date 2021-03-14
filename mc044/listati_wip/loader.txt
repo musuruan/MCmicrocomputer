@@ -1,0 +1,28 @@
+1 poke 36878,15:printchr$(14)
+5 print"{clr}{down}**********************
+10 print" *** *** * * *** ***
+20 print" * * * * * * *   * *
+30 print" *** * * **  *** ***
+40 print" *   * * **  *   **
+50 print" *   * * * * *   * *
+60 print" *   *** * * *** * *
+70 print:print"**********************
+80 print"{down}{down} By Bruno Marcantonio":print"{down}          &":print"{down} Riccardo Marcantonio"
+85 print"{down}   Copyright 1985"
+90 fori=127to254:poke 36875,i:fory=ito 50:nexty:poke 36875,254-i:nexti
+100 print"{rvon}    ISTRUZIONI      "
+110 print"{down}{down}Per dire quanto punti {down}premi : <_>":print "{down}e dopo premi
+120 print"{down}<RETURN>{down}{down}{down}{down}{down}{down}{down}{down}{down}{down}{down}"
+130 print"PREMI UN TASTO":poke198,0
+140 geta$:ifa$=""then140
+150 a$="":print"{rvon}    ISTRUZIONI      "
+160 print"{down}{down}Per dire quali carte  {down}tieni usa i tasti:"
+170 print"{down} <1>,<2>,<3>,<4>,<5>":print"{down}e dopo premi :":print"{down} <RETURN>"
+180 print"{down}In ogni caso di errore{down}premere :":print"{down} <f1>
+190 print"{down}e ripetere l'input.":print"{down}PREMI UN TASTO":poke198,0
+200 geta$:ifa$=""then200
+230 print"{down}{down}{down}{down}{down}{down}{down}{down}{rvon}    ISTRUZIONI      "
+240 print"{down}in tutti gli altri    {down}casi segui il VIC 20.{down}{down}{down}{down}{down}{down}{down}
+250 print"     Attendere        {down}{down}{down}{down}{down}{down}{down}
+270 print"{up}{up}{up}{up}{up}{up}":clr:print"load"chr$(34)"poker"chr$(34)",8{up}{up}{up}":poke631,131:poke198,1:
+

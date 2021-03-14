@@ -1,0 +1,22 @@
+10 restore:pk=679
+20 reada:ifa<0then50
+30 pokepk,a:pk=pk+1:goto20
+50 pk=49152
+60 reada:ifa<0then100
+70 pokepk,a:pk=pk+1:goto60
+100 sys49152:rem*** trasferisce rom ***
+200 a=200:gotoa+50
+210 print"210":return
+220 print"220":return
+230 print"230":return
+240 print"prova gosub calcolato":return
+250 print"prova goto calcolato"
+260 fort=240to210step-10
+270 gosubt:next:end
+1000 data 32,180,2,76,163,168,32,180,2,32,163,168,96,32,138
+1010 data 173,32,247,183,96,-1
+1020 data 160,0,132,251,169,160,133,252,177,251,145,251,230,251,208
+1030 data 248,230,252,165,252,201,192,48,240,169,54,133,1,169,166
+1040 data 141,30,160,169,2,141,31,160,169,173,141,155,168,169,2
+1050 data 141,156,168,96,-1
+

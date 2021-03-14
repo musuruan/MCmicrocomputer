@@ -1,0 +1,37 @@
+begin
+repeat
+  print"{clr}"
+  fori=2;12do
+   begin
+     print"{home}{down}{down}{down}{down}   {CBM-@} {CBM-@} {CBM-@}     {CBM-@} {CBM-@} {CBM-@}    {up}";
+     forj=1toi
+     print"{right}";
+     a%=int(rnd(1)*6+1)
+     case a% of
+      begin
+       1_a$="323"
+       2_a$="232"
+       3_a$="222"
+       4_a$="121"
+       5_a$="121"
+       6_a$="111"
+      end
+      while a$<>"" do
+      begin
+       b$=left$(a$,1)
+       a$=right$(a$,len(a$)-1)
+       case val(b$) of
+        begin
+         1_print"{down}{CBM-M}{SHIFT-Q}   {SHIFT-Q}{CBM-G}{15 right}";
+         2_print"{down}{CBM-M}  {SHIFT-Q}  {CBM-G}{15 right}"
+         3_print"{down}{CBM-M}     {CBM-G}{15 right}";
+        end
+     end
+  end
+  print print"{home}{down}{down}{down}{down}{down}{down}{down}{down}{down}{down}   {CBM-T} {CBM-T} {CBM-T}     {CBM-T} {CBM-T} {CBM-T}";
+  repeat
+  getz$
+  until z$<>""
+  until z$="*"
+end.
+
