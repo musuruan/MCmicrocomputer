@@ -1,4 +1,4 @@
-5 REM CAMBIO 8/9&
+5 REM CAMBIO 8/9&                  E.M.
 10 F=0:N$="&9"
 20 FOR L=8192 TO 8204
 30 READ B:POKE L,B
