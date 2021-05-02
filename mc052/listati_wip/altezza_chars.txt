@@ -1,0 +1,20 @@
+10 REM ---------------- ALTEZZA CARATTERI ---------------
+20 FAST:FOR I=1 TO 6
+30 REM --------------------------------------------------
+40 REM - ISTRUZIONE 09 PER IL NUMERO DEI PIXEL DEI CHAR -
+50 REM --------------------------------------------------
+60 READ A
+70 POKE54784,09
+80 POKE54785,A
+90 REM ------------------------------------
+100 REM - ISTRUZIONE 04 PER IL SINCRONISMO -
+110 REM ------------------------------------
+120 READ B
+130 POKE54784,4
+140 POKE54785,B
+150 PRINT"(CLR)":LIST:GETKEY A$:NEXT
+160 REM -----------------------------
+170 REM - VALORI DI LINEE E DI SYNC -
+180 REM -----------------------------
+190 DATA4,48,5,40,6,39,7,38,8,37,9,32,10,25
+

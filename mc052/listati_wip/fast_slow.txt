@@ -1,0 +1,7 @@
+10 REM ----------------- FAST/SLOW -----------------
+20 POKE DEC ("D030"),1:REM FAST
+30 FOR I=1 TO 10:PRINT"******** FAST ********":NEXT
+40 GETKEY A$
+50 POKE DEC ("D030"),0:REM SLOW
+60 FOR I=1 TO 10:PRINT"******** SLOW ********":NEXT
+
