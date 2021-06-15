@@ -1,6 +1,6 @@
-10 fast:scnclr:print"(rvs) Char-80 v1.0 BOOTFILE LOADER"
+10 fast:scnclr:print"(rvs)Char-80 v1.0 BOOTFILE LOADER"
 20 print"(down)(down)Wait please..."
-30 fori=3840tO3943:reada$:pokei,dec(a$):re=re+dec(a$):next
+30 fori=3840to3943:reada$:pokei,dec(a$):re=re+dec(a$):next
 40 readch:ifre<>chthenprint"Error in DATA statements !":end
 50 print"(down)Insert (rvs)Char-80 v1.0(off) disk and press a key"
 60 getkeya$:print"(down)Saving BOOT file..."

@@ -1,8 +1,0 @@
-5000 re=0:fori=0to59:reada$:pokesa+i,dec(a$)
-5010 re=re+dec(a$):next:readch
-5020 e=0:ifre<>chthene=-1
-5030 return
-6000 forbl=1totb:gosub5000
-6010 ifethenprint"Error in DATA lines"sl"-"sl+30:end
-6020 sl=sl+40:sa=sa+60:next:return
-
