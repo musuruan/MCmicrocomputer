@@ -1,144 +1,143 @@
-100 ifpeek(44)<>36thenprint"{clr}{down}digitare  poke 44,36 e{down}rileggere il programma":end
-110 rem ********************
-120 rem * subroutine  plot *
-130 rem ********************
-140 poke56,89:poke55,0:gosub1230:goto200
-150 ifx<0orx>167thenreturn
-160 ify<0ory>175thenreturn
-170 c%=4096*y+int(x+1)/8*176:v%=2^(7-xand7)
-180 pokec%,v%orpeek(c%)
-190 return
-200 poke36866,22:poke36864,12:poke36567,46:poke36879,27:poke36865,38
-210 poke36869,192
-220 print"{clr}{down}{rvon}{blu}** m a t h   p a c k **{rvof}"
-230 print"{down} {rvon}1{rvof} nuova funzione"
-240 print"{down} {rvon}2{rvof} nuovo intervallo"
-250 print"{down} {rvon}3{rvof} grafico y=f(x)"
-260 print"{down} {rvon}4{rvof} integrazione"
-270 print"{down} {rvon}5{rvof} derivazione"
-280 print"{down} {rvon}6{rvof} max e min"
-290 print"{down} {rvon}7{rvof} soluzioni reali"
-300 print"{down} {rvon}8{rvof} pagina grafica"
-310 print"{down}{down}{rvon}   (c) adp-sofware   {rvof}{home}"
-320 getz$:ifz$<"1"orz$>"8"then320
-330 print"{clr}":onval(z$)goto370,390,440,850,760,1080,930,700
-340 rem ********************
-350 rem *  nuova funzione  *
-360 rem ********************
-370 input"{clr}{down}f(x)=";z$:print"{down}{wht}400deffny(x)=";z$:print"run 200{home}"
-380 poke198,2:poke631,13:poke632,13:end
-390 gosub730:x1=t1:x2=t2:goto200
-400 deffny(x)=sin(~*sin(sin(x)))
-410 deffny1(x)=(fny(x+1e-4)-fny(x-1e-4))/2e-4
-420 deffny2(x)=(fny1(x+1e-4)-fny1(x-1e-4))/2e-4
-430 deffnar(y)=int(y*1e4+.5)/1e4:return
-440 ifx1=x2then200
-450 z$="si":fl=0:gosub400:input"assi cartesiani ";z$:ifz$="si"thenfl=1
-460 y1=0:y2=0
-470 iffl=0thenz$="no":input"sovrapposizione ";z$:ifz$="si"thensys23871:goto580
-480 sys23600
-490 rem ********************
-500 rem * grafico di  f(x) *
-510 rem ********************
-520 sys23871:y1=1e30:y2=-1e30
-530 forx=x1tox2step(x2-x1)/90
-540 y=-fny(x)
-550 ify<y1theny1=y
-560 ify>y2theny2=y
-570 next
-580 u=0:p=0:ify1<>y2thenky=173/(y2-y1):a$=str$(y1)+"@"+str$(ky):goto1040
-590 u=u+1:ifpeek(22785+u)<>35thena$=a$+chr$(peek(22738+u)):goto590
-600 p=p+1:ifmid$(a$,p,1)<>"@"then600
-610 y1=val(left$(a$,p-1)):ky=val(mid$(a$,p+1,20))
-620 ifx1<>x2thenkx=167/(x2-x1)
-rem controllare le prossime due linee!!
-630 ify1<0andy2>0andfl=1thenx=0:y=-y1*ky+1:gosub150:fori=c%to7791step176:pokei,155:next
-640 ifx1<0andx2>0andfl=1theny=0:x=-x1*kx:gosub150:fori=c%toc%+174:pokei,v%orpeek(i):next
-650 forx0=x1tox2step(x2-x1)/160
-660 x=(x0-x1)*kx:y=(-fny(x0)-y1)*ky+1
-670 gosub150
-680 next
-690 goto710
-700 sys23871
-710 getz$:ifz$=""then710
-720 sys23850:goto200
-730 input"{blu}intervallo";t1,t2:ift1>t2thent=t1:t1=t2:t2=t
-740 ift1=t2then890
-750 return
-760 print"{clr}{down}{rvon}derivazione{rvof}":gosub400
-770 z$="":input"{home}{down}{down}{down}{down}{down}x=";z$:ifz$=""then200
-780 xx=val(z$):y=fny(xx):y=fnar(y):print"{down}{down}f (x)=";y;"{left}        "
-790 y=fny1(xx):y=fnar(y):print"{down}{down}f'(x)=";y;"{left}        "
-800 y=fny2(xx):y=fnar(y):print"{down}{down}f''(x)=";y;"{left}        "
-810 goto770
-820 rem ********************
-830 rem *   integrazione   *
-840 rem ********************
-850 print"{clr}{down}{rvon}integrale definito{rvof}{down}":gosub730:input"{down}n. suddivisioni";c:gosub400
-860 j1=fny(t1):s=(t2-t1)/c:a=0:forxx=t1+stot2steps:j2=fny(xx):a=a+s*(j2+j1)/2
-870 j1=j2:next:a=fnar(a):print"{down}U{down}{left}B{down}{left}K{up}f(x)dx=";a
-880 getz$:ifz$=""then880
-890 goto200
-900 rem ********************
-910 rem * soluzioni  reali *
-920 rem ********************
-930 print"{clr}{down}{rvon}soluzioni reali{rvof}{down}":gosub730:gosub400:fr=0:print"{down}{rvon}ascissa               {rvof}"
-940 r=(t2-t1)/100
-950 j1=sgn(fny(t1)):s=r
-960 t1=t1+s:j3=fny(t1):j2=-sgn(j3)*(abs(j3)>1e-8):ifj1<>j2then790
-970 ift1<t2then960
-980 print"{rvon}{down}        stop !        {rvof}":goto880
-990 iffr=0thenss=s:fr=1
-1000 ifj1=0thenz=t1-s:goto1030
-1010 ifj2=0thenz=t1:goto1030
-1020 t1=t1-s:s=s/2:j1=sgn(fny(t1)):goto960
-1030 z=fnar(z):printz:fr=0:t1=t1+r:goto950
-1040 foru=1tolen(a$):poke22785+u,asc(mid$(a$,u,1)):next:poke22785+u,35:goto620
-1050 rem ********************
-1060 rem *    max  &  min   *
-1070 rem ********************
-1080 print"{clr}{down}{rvon} max & min {rvof}{down}":gosub730:gosub400:fr=0:print"{down}{rvon}ascissa  ###  ordinata{rvof}"
-1090 r=(t2-t1)/50
-1100 j1=sgn(fny1(t1)):s=r
-1110 t1=t1+s:j3=fny1(t1):j2=-sgn(j3)*(abs(j3)>1e-20):ifj1<>j2ors<1e-15then1140
-1120 ift1<t2then1100
-1130 goto980
-1140 iffr=0thenss=s:fr=1
-1150 ifj1=0thenz=t1-s:goto1180
-1160 ifj2=0thenz=t1:goto1180
-1170 t1=t1-s:s=s/2:j1=sgn(fny1(t1)):goto1110
-1180 zz=fnar(z):t=fnar(fny(z)):z$=left$("    ",4-len(str$(int(t))))+str$(t)
-1190 j3=fnar(fny2(zz))
-1200 ifsgn(j3)=1thenprintzz,"{left}{left}min ";z$
-1210 ifsgn(j3)=-1thenprintzz,"{left}{left}max ";z$
-1220 fr=0:t1=t1+r:goto1110
-1230 poke36866,23:poke36864,11:poke36867,44:poke36876,25
-1240 print"{clr}{down}{down}{down}{blu}";
-1250 print"{CBM-+}   {CBM-+}  {CBM-+}{CBM-+}{CBM-+}  {CBM-+}{CBM-+}{CBM-+}{CBM-+}{CBM-+} {CBM-+}   {CBM-+}"
-1260 print"{CBM-+}{CBM-+} {CBM-+}{CBM-+} {CBM-+}   {CBM-+}   {CBM-+}   {CBM-+}   {CBM-+}"
-1270 print"{CBM-+}{$a0}{CBM-+}{$a0}{CBM-+}{$a0}{CBM-+}{$a0}{$a0}{$a0}{CBM-+}{$a0}{$a0}{$a0}{CBM-+}{$a0}{$a0}{$a0}{CBM-+}{$a0}{$a0}{$a0}{CBM-+}"
-1280 print"{CBM-+}{$a0}{$a0}{$a0}{CBM-+}{$a0}{CBM-+}{CBM-+}{CBM-+}{CBM-+}{CBM-+}{$a0}{$a0}{$a0}{CBM-+}{$a0}{$a0}{$a0}{CBM-+}{CBM-+}{CBM-+}{CBM-+}{CBM-+}"
-1290 print"{CBM-+}{$a0}{$a0}{$a0}{CBM-+}{$a0}{CBM-+}{$a0}{$a0}{$a0}{CBM-+}{$a0}{$a0}{$a0}{CBM-+}{$a0}{$a0}{$a0}{CBM-+}{$a0}{$a0}{$a0}{CBM-+}"
-1300 print"{CBM-+}{$a0}{$a0}{$a0}{CBM-+}{$a0}{CBM-+}{$a0}{$a0}{$a0}{CBM-+}{$a0}{$a0}{$a0}{CBM-+}{$a0}{$a0}{$a0}{CBM-+}{$a0}{$a0}{$a0}{CBM-+}"
-1310 print"{CBM-+}{$a0}{$a0}{$a0}{CBM-+}{$a0}{CBM-+}{$a0}{$a0}{$a0}{CBM-+}{$a0}{$a0}{$a0}{CBM-+}{$a0}{$a0}{$a0}{CBM-+}{$a0}{$a0}{$a0}{CBM-+}{down}{rght}"
-1320 print"{CBM-+}{CBM-+}{CBM-+}{CBM-+}{$a0}{$a0}{$a0}{CBM-+}{CBM-+}{CBM-+}{$a0}{$a0}{$a0}{CBM-+}{CBM-+}{CBM-+}{$a0}{$a0}{CBM-+}{$a0}{$a0}{$a0}{CBM-+}"
-1330 print"{CBM-+}   {CBM-+}{$a0}{CBM-+}{$a0}{$a0}{$a0}{CBM-+}{$a0}{CBM-+}{$a0}{$a0}{$a0}{CBM-+}{$a0}{CBM-+}{$a0}{$a0}{CBM-+} "
-1340 print"{CBM-+}{$a0}{$a0}{$a0}{CBM-+}{$a0}{CBM-+}{$a0}{$a0}{$a0}{CBM-+}{$a0}{CBM-+}{$a0}{$a0}{$a0}{$a0}{$a0}{CBM-+}{$a0}{CBM-+}  "
-1350 print"{CBM-+}{CBM-+}{CBM-+}{CBM-+}{$a0}{$a0}{CBM-+}{CBM-+}{CBM-+}{CBM-+}{CBM-+}{$a0}{CBM-+}{$a0}{$a0}{$a0}{$a0}{$a0}{CBM-+}{CBM-+}   "
-1360 print"{CBM-+}{$a0}{$a0}{$a0}{$a0}{$a0}{CBM-+}{$a0}{$a0}{$a0}{CBM-+}{$a0}{CBM-+}{$a0}{$a0}{$a0}{$a0}{$a0}{CBM-+}{$a0}{CBM-+}  "
-1370 print"{CBM-+}{$a0}{$a0}{$a0}{$a0}{$a0}{CBM-+}{$a0}{$a0}{$a0}{CBM-+}{$a0}{CBM-+}{$a0}{$a0}{$a0}{CBM-+}{$a0}{CBM-+}{$a0}{$a0}{CBM-+} "
-1380 print"{CBM-+}{$a0}{$a0}{$a0}{$a0}{$a0}{CBM-+}{$a0}{$a0}{$a0}{CBM-+}{$a0}{$a0}{CBM-+}{CBM-+}{CBM-+}{$a0}{$a0}{CBM-+}{$a0}{$a0}{$a0}{CBM-+}"
-1390 fork=52191to52314:readkk:pokek,kk:next
-1400 sys52191
+100 IFPEEK(44)<>36THENPRINT"(CLR)(DOWN)DIGITARE  POKE 44,36 E(DOWN)RILEGGERE IL PROGRAMMA":END
+110 REM ********************
+120 REM * SUBROUTINE  PLOT *
+130 REM ********************
+140 POKE56,89:POKE55,0:GOSUB1230:GOTO200
+150 IFX<0ORX>167THENRETURN
+160 IFY<0ORY>175THENRETURN
+170 C%=4096*Y+INT(X+1)/8*176:V%=2^(7-XAND7)
+180 POKEC%,V%ORPEEK(C%)
+190 RETURN
+200 POKE36866,22:POKE36864,12:POKE36567,46:POKE36879,27:POKE36865,38
+210 POKE36869,192
+220 PRINT"(CLR)(DOWN)(RVS)(BLU)** M A T H   P A C K **(OFF)"
+230 PRINT"(DOWN) (RVS)1(OFF) NUOVA FUNZIONE"
+240 PRINT"(DOWN) (RVS)2(OFF) NUOVO INTERVALLO"
+250 PRINT"(DOWN) (RVS)3(OFF) GRAFICO Y=F(X)"
+260 PRINT"(DOWN) (RVS)4(OFF) INTEGRAZIONE"
+270 PRINT"(DOWN) (RVS)5(OFF) DERIVAZIONE"
+280 PRINT"(DOWN) (RVS)6(OFF) MAX E MIN"
+290 PRINT"(DOWN) (RVS)7(OFF) SOLUZIONI REALI"
+300 PRINT"(DOWN) (RVS)8(OFF) PAGINA GRAFICA"
+310 PRINT"(DOWN)(DOWN)(RVS)   (C) ADP-SOFWARE   (OFF)(HOME)"
+320 GETZ$:IFZ$<"1"ORZ$>"8"THEN320
+330 PRINT"(CLR)":ONVAL(Z$)GOTO370,390,440,850,760,1080,930,700
+340 REM ********************
+350 REM *  NUOVA FUNZIONE  *
+360 REM ********************
+370 INPUT"(CLR)(DOWN)F(X)=";Z$:PRINT"(DOWN)(WHT)400DEFFNY(X)=";Z$:PRINT"RUN 200(HOME)"
+380 POKE198,2:POKE631,13:POKE632,13:END
+390 GOSUB730:X1=T1:X2=T2:GOTO200
+400 DEFFNY(X)=SIN(~*SIN(SIN(X)))
+410 DEFFNY1(X)=(FNY(X+1E-4)-FNY(X-1E-4))/2E-4
+420 DEFFNY2(X)=(FNY1(X+1E-4)-FNY1(X-1E-4))/2E-4
+430 DEFFNAR(Y)=INT(Y*1E4+.5)/1E4:RETURN
+440 IFX1=X2THEN200
+450 Z$="SI":FL=0:GOSUB400:INPUT"ASSI CARTESIANI ";Z$:IFZ$="SI"THENFL=1
+460 Y1=0:Y2=0
+470 IFFL=0THENZ$="NO":INPUT"SOVRAPPOSIZIONE ";Z$:IFZ$="SI"THENSYS23871:GOTO580
+480 SYS23600
+490 REM ********************
+500 REM * GRAFICO DI  F(X) *
+510 REM ********************
+520 SYS23871:Y1=1E30:Y2=-1E30
+530 FORX=X1TOX2STEP(X2-X1)/90
+540 Y=-FNY(X)
+550 IFY<Y1THENY1=Y
+560 IFY>Y2THENY2=Y
+570 NEXT
+580 U=0:P=0:IFY1<>Y2THENKY=173/(Y2-Y1):A$=STR$(Y1)+"@"+STR$(KY):GOTO1040
+590 U=U+1:IFPEEK(22785+U)<>35THENA$=A$+CHR$(PEEK(22738+U)):GOTO590
+600 P=P+1:IFMID$(A$,P,1)<>"@"THEN600
+610 Y1=VAL(LEFT$(A$,P-1)):KY=VAL(MID$(A$,P+1,20))
+620 IFX1<>X2THENKX=167/(X2-X1)
+630 IFY1<0ANDY2>0ANDFL=1THENX=0:Y=-Y1*KY+1:GOSUB150:FORI=C%TO7791STEP176:POKEI,155:NEXT
+640 IFX1<0ANDX2>0ANDFL=1THENY=0:X=-X1*KX:GOSUB150:FORI=C%TOC%+174:POKEI,V%ORPEEK(I):NEXT
+650 FORX0=X1TOX2STEP(X2-X1)/160
+660 X=(X0-X1)*KX:Y=(-FNY(X0)-Y1)*KY+1
+670 GOSUB150
+680 NEXT
+690 GOTO710
+700 SYS23871
+710 GETZ$:IFZ$=""THEN710
+720 SYS23850:GOTO200
+730 INPUT"(BLU)INTERVALLO";T1,T2:IFT1>T2THENT=T1:T1=T2:T2=T
+740 IFT1=T2THEN890
+750 RETURN
+760 PRINT"(CLR)(DOWN)(RVS)DERIVAZIONE(OFF)":GOSUB400
+770 Z$="":INPUT"(HOME)(DOWN)(DOWN)(DOWN)(DOWN)(DOWN)X=";Z$:IFZ$=""THEN200
+780 XX=VAL(Z$):Y=FNY(XX):Y=FNAR(Y):PRINT"(DOWN)(DOWN)F (X)=";Y;"(LEFT)        "
+790 Y=FNY1(XX):Y=FNAR(Y):PRINT"(DOWN)(DOWN)F'(X)=";Y;"(LEFT)        "
+800 Y=FNY2(XX):Y=FNAR(Y):PRINT"(DOWN)(DOWN)F''(X)=";Y;"(LEFT)        "
+810 GOTO770
+820 REM ********************
+830 REM *   INTEGRAZIONE   *
+840 REM ********************
+850 PRINT"(CLR)(DOWN)(RVS)INTEGRALE DEFINITO(OFF)(DOWN)":GOSUB730:INPUT"(DOWN)N. SUDDIVISIONI";C:GOSUB400
+860 J1=FNY(T1):S=(T2-T1)/C:A=0:FORXX=T1+STOT2STEPS:J2=FNY(XX):A=A+S*(J2+J1)/2
+870 J1=J2:NEXT:A=FNAR(A):PRINT"(DOWN)(SHIFT-U)(DOWN)(LEFT)(SHIFT-B)(DOWN)(LEFT)(SHIFT-K)(UP)F(X)DX=";A
+880 GETZ$:IFZ$=""THEN880
+890 GOTO200
+900 REM ********************
+910 REM * SOLUZIONI  REALI *
+920 REM ********************
+930 PRINT"(CLR)(DOWN)(RVS)SOLUZIONI REALI(OFF)(DOWN)":GOSUB730:GOSUB400:FR=0:PRINT"(DOWN)(RVS)ASCISSA               (OFF)"
+940 R=(T2-T1)/100
+950 J1=SGN(FNY(T1)):S=R
+960 T1=T1+S:J3=FNY(T1):J2=-SGN(J3)*(ABS(J3)>1E-8):IFJ1<>J2THEN790
+970 IFT1<T2THEN960
+980 PRINT"(RVS)(DOWN)        STOP !        (OFF)":GOTO880
+990 IFFR=0THENSS=S:FR=1
+1000 IFJ1=0THENZ=T1-S:GOTO1030
+1010 IFJ2=0THENZ=T1:GOTO1030
+1020 T1=T1-S:S=S/2:J1=SGN(FNY(T1)):GOTO960
+1030 Z=FNAR(Z):PRINTZ:FR=0:T1=T1+R:GOTO950
+1040 FORU=1TOLEN(A$):POKE22785+U,ASC(MID$(A$,U,1)):NEXT:POKE22785+U,35:GOTO620
+1050 REM ********************
+1060 REM *    MAX  &  MIN   *
+1070 REM ********************
+1080 PRINT"(CLR)(DOWN)(RVS) MAX & MIN (OFF)(DOWN)":GOSUB730:GOSUB400:FR=0:PRINT"(DOWN)(RVS)ASCISSA  ###  ORDINATA(OFF)"
+1090 R=(T2-T1)/50
+1100 J1=SGN(FNY1(T1)):S=R
+1110 T1=T1+S:J3=FNY1(T1):J2=-SGN(J3)*(ABS(J3)>1E-20):IFJ1<>J2ORS<1E-15THEN1140
+1120 IFT1<T2THEN1100
+1130 GOTO980
+1140 IFFR=0THENSS=S:FR=1
+1150 IFJ1=0THENZ=T1-S:GOTO1180
+1160 IFJ2=0THENZ=T1:GOTO1180
+1170 T1=T1-S:S=S/2:J1=SGN(FNY1(T1)):GOTO1110
+1180 ZZ=FNAR(Z):T=FNAR(FNY(Z)):Z$=LEFT$("    ",4-LEN(STR$(INT(T))))+STR$(T)
+1190 J3=FNAR(FNY2(ZZ))
+1200 IFSGN(J3)=1THENPRINTZZ,"(LEFT)(LEFT)MIN ";Z$
+1210 IFSGN(J3)=-1THENPRINTZZ,"(LEFT)(LEFT)MAX ";Z$
+1220 FR=0:T1=T1+R:GOTO1110
+1230 POKE36866,23:POKE36864,11:POKE36867,44:POKE36876,25
+1240 PRINT"(CLR)(DOWN)(DOWN)(DOWN)(BLU)";
+1250 PRINT"(CBM-+)   (CBM-+)  (CBM-+)(CBM-+)(CBM-+)  (CBM-+)(CBM-+)(CBM-+)(CBM-+)(CBM-+) (CBM-+)   (CBM-+)"
+1260 PRINT"(CBM-+)(CBM-+) (CBM-+)(CBM-+) (CBM-+)   (CBM-+)   (CBM-+)   (CBM-+)   (CBM-+)"
+1270 PRINT"(CBM-+) (CBM-+) (CBM-+) (CBM-+)   (CBM-+)   (CBM-+)   (CBM-+)   (CBM-+)"
+1280 PRINT"(CBM-+)   (CBM-+) (CBM-+)(CBM-+)(CBM-+)(CBM-+)(CBM-+)   (CBM-+)   (CBM-+)(CBM-+)(CBM-+)(CBM-+)(CBM-+)"
+1290 PRINT"(CBM-+)   (CBM-+) (CBM-+)   (CBM-+)   (CBM-+)   (CBM-+)   (CBM-+)"
+1300 PRINT"(CBM-+)   (CBM-+) (CBM-+)   (CBM-+)   (CBM-+)   (CBM-+)   (CBM-+)"
+1310 PRINT"(CBM-+)   (CBM-+) (CBM-+)   (CBM-+)   (CBM-+)   (CBM-+)   (CBM-+)(DOWN)(RGHT)"
+1320 PRINT"(CBM-+)(CBM-+)(CBM-+)(CBM-+)   (CBM-+)(CBM-+)(CBM-+)   (CBM-+)(CBM-+)(CBM-+)  (CBM-+)   (CBM-+)"
+1330 PRINT"(CBM-+)   (CBM-+) (CBM-+)   (CBM-+) (CBM-+)   (CBM-+) (CBM-+)  (CBM-+) "
+1340 PRINT"(CBM-+)   (CBM-+) (CBM-+)   (CBM-+) (CBM-+)     (CBM-+) (CBM-+)  "
+1350 PRINT"(CBM-+)(CBM-+)(CBM-+)(CBM-+)  (CBM-+)(CBM-+)(CBM-+)(CBM-+)(CBM-+) (CBM-+)     (CBM-+)(CBM-+)   "
+1360 PRINT"(CBM-+)     (CBM-+)   (CBM-+) (CBM-+)     (CBM-+) (CBM-+)  "
+1370 PRINT"(CBM-+)     (CBM-+)   (CBM-+) (CBM-+)   (CBM-+) (CBM-+)  (CBM-+) "
+1380 PRINT"(CBM-+)     (CBM-+)   (CBM-+)  (CBM-+)(CBM-+)(CBM-+)  (CBM-+)   (CBM-+)"
+1390 FORK=52191TO52314:READKK:POKEK,KK:NEXT
+1400 SYS52191
 1410 
-1420 sys???:return
-1430 data169,16,162,0,157,0,192,157,0,193,157,0,194,157,0,195,202,208,241,169
-1440 data224,133,255,169,0,133,254,168,145,254,200,208,251,230,255,208,247,96
-1450 data173,2,221,9,3,141,2,221,173,0,221,41,252,141,0,221,173,24,208,41,1,9,8
-1460 data141,24,208,173,17,208,9,32,141,17,208,96,120,169,5,133,1,160,0,177,254
-1470 data5,253,145,254,169,7,133,1,88,96,173,2,221,9,3,141,2,221,173,0,221,41
-1480 data252,9,3,141,0,221,169,20,141,24,208,173,17,208,41,223,141,17,208,96
-1490 data
-1500 data
-1510 data
+1420 SYS???:RETURN
+1430 DATA169,16,162,0,157,0,192,157,0,193,157,0,194,157,0,195,202,208,241,169
+1440 DATA224,133,255,169,0,133,254,168,145,254,200,208,251,230,255,208,247,96
+1450 DATA173,2,221,9,3,141,2,221,173,0,221,41,252,141,0,221,173,24,208,41,1,9,8
+1460 DATA141,24,208,173,17,208,9,32,141,17,208,96,120,169,5,133,1,160,0,177,254
+1470 DATA5,253,145,254,169,7,133,1,88,96,173,2,221,9,3,141,2,221,173,0,221,41
+1480 DATA252,9,3,141,0,221,169,20,141,24,208,173,17,208,41,223,141,17,208,96
+1490 DATA
+1500 DATA
+1510 DATA
 
