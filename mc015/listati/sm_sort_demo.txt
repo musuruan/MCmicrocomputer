@@ -1,0 +1,12 @@
+5 poke52,0:poke53,120:clr:print"{clr}";
+6 input"n=";n
+10 poke1,0:poke2,120:dima$(n)
+30 forj=0ton:fori=0to4+5*rnd(1)
+40 a$=a$+chr$(rnd(1)*26+65):next
+50 a$(j)=a$:a$="":print"{rvon} {rvof}";:next
+70 print"{clr}";:ti$="000000":t=ti
+80 x=usr(a$(0))
+90 p=ti-t:t$=ti$:print"{home}";
+110 printp,p/60"secondi",ti$
+1000 forj=0ton:printa$(j):next
+
