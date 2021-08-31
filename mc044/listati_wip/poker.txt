@@ -7,31 +7,31 @@
 7 ifa$<>"_"then12
 8 ifpt=10orpt=cithenpoke 36875,255:fori=0to125:next:poke 36875,0:goto6
 9 poke 36875,200
-10 pr=pt+1:cr=cr-1:print"{up}{rght}{rght}{rght}{rght}{rght}{rght}{rght}{rght}{rght}{rght}{rght}{rght}{rght}{rght}"pt"{left} "
+10 pt=pt+1:cr=cr-1:print"{up}{rght}{rght}{rght}{rght}{rght}{rght}{rght}{rght}{rght}{rght}{rght}{rght}{rght}{rght}"pt"{left} "
 11 printtab(248)"{rvon}"cr"{left} {rvof}";:print"{home}"tab(242):poke 36875,0:goto6
 12 ifa$="{f1}"thencr=ci:goto4
 13 ifa$<>chr$(13)orpt=0then6
-14 fori=1to8:l$(i)=chr$(i+49):next:l$(0)="a":l$(9)="10":l$(10)="j":l$(11)="q":1$(12)="k"
-15 c$(0)="{red}SS{blu}":c$(1)={red}ZZ{blu}":c$(2)="XX":c$(3)="AA"
+14 fori=1to8:l$(i)=chr$(i+49):next:l$(0)="a":l$(9)="10":l$(10)="j":l$(11)="q":l$(12)="k
+15 c$(0)="{red}SS{blu}":c$(1)="{red}ZZ{blu}":c$(2)="XX":c$(3)="AA"
 16 fori=0to51:c%(i)=i:nexti
 17 fori=0to4:gosub105:c(i)=int(n/13):v(i)=n-c(i)*13:next
 18 gosub100
-19 print"{up}{up}                 ":print"hai fatto :":print"{down}{down}vinci :{rvon}"ft*pt
+19 print"{up}{up}                  ":print"hai fatto :":print"{down}{down}vinci :{rvon}"ft*pt
 20 print"{down}{down}quali carte tieni ?":fori=0to4:p(i)=0:next
 21 poke 198,0
 22 geta$:ifa$=""then22
-23 ifa$="{f1}"thenfori=0to4:poke 7079+i*4,32:p(i)=0:next:goto22
+23 ifa$="{f1}"thenfori=0to4:poke 7879+i*4,32:p(i)=0:next:goto22
 24 ifa$=chr$(13)thenq=0:goto305
 25 ifval(a$)=0orval(a$)>5then22
 26 ifp(val(a$)-1)=1then22
 27 poke 36875,200:p(val(a$)-1)=1:goto240
-100 print"{home}":fory=0to4:c=c(y):v=v(y):p=y:gosub245:for j=0t0100:next:next:gosub120:return
+100 print"{home}":fory=0to4:c=c(y):v=v(y):p=y:gosub245:for j=0to100:next:next:gosub120:return
 105 n=int(rnd(1)*51+0)
 110 ifc%(n)=-1thengoto105
 115 c%(n)=-1:return
 120 so=0:fori=0to4:h(i)=0:next
 125 fork=1to4
-130 fori=kto4:ifv(k-1)=v(i)thenh(k=1)=h(k-1)+1:h(i)=h(i)+1
+130 fori=kto4:ifv(k-1)=v(i)thenh(k-1)=h(k-1)+1:h(i)=h(i)+1
 135 nexti,k
 140 fori=0to4:so=so+h(i):next
 145 ifso=0then175
@@ -48,20 +48,20 @@
 195 next
 200 ifma-mi=4thentj=1
 205 ifma-mi=12thengoto230
-210 ifti+th=2thenprint"{down}{down}{down}{down}{down}{down}{down}{down}{down}{down}"tab(11)"{rvon}scala reale":print"{up}";:ft=100:return
-215 ifti+th=0thenprint"{down}{down}{down}{down}{down}{down}{down}{down}{down}{down}"tab(11)"{rvon}niente":ft=0:return
-220 iftij=0thenprint"{down}{down}{down}{down}{down}{down}{down}{down}{down}{down}"tab(11)"{rvon}colore":ft=25:return
+210 iftj+th=2thenprint"{down}{down}{down}{down}{down}{down}{down}{down}{down}{down}"tab(11)"{rvon}scala reale":print"{up}";:ft=100:return
+215 iftj+th=0thenprint"{down}{down}{down}{down}{down}{down}{down}{down}{down}{down}"tab(11)"{rvon}niente":ft=0:return
+220 iftj=0thenprint"{down}{down}{down}{down}{down}{down}{down}{down}{down}{down}"tab(11)"{rvon}colore":ft=25:return
 225 print"{down}{down}{down}{down}{down}{down}{down}{down}{down}{down}"tab(11)"{rvon}scala":ft=5:return
-230 fori=0to4i:sv=v(i)+sv:next:ifsv=42thentj=1
+230 fori=0to4:sv=v(i)+sv:next:ifsv=42thentj=1
 235 goto210
 240 print"{home}{down}{down}{down}{down}{down}{down}{down}{down}{down}"tab(val(a$)*4-3)"Q":poke 36875,0:goto22
 245 poke 36876,255:p=p*4
-250 printtab(p)"{rvof}UCCI":fori=0to5:printtab(p)"{SHIFT--}  {SHIFT--}":next:printtab(p)"JFFK{white}":print"{home}{down}"
+250 printtab(p)"{rvof}UCCI":fori=0to5:printtab(p)"{SHIFT--}  {SHIFT--}":next:printtab(p)"JFFK{blu}":print"{home}{down}"
 255 ifv=9thenprinttab(p+1)l$(v):print"{down}{down}{down}{down}"tab(p+1)l$(v):goto265
 260 printtab(p+1)l$(v):print"{down}{down}{down}{down}"tab(p+2)l$(v)
 265 print"{up}{up}{up}{up}"tab(p+1)c$(c):printtab(p+1)c$(c)
 270 print"{home}":poke 36876,0:return
-275 print"{clr}?{rvon} 1   2   3   4    5   ":print"{rvof}UCCIUCCIUCCIUCCIUCCI"
+275 print"{clr}{up}{rvon} 1   2   3   4   5   ":print"{rvof}UCCIUCCIUCCIUCCIUCCI"
 280 fory=1to6
 285 fori=1to5:print"B{CBM-+}{CBM-+}H";:next
 290 print:print"{up}":next
@@ -72,23 +72,23 @@
 315 gosub105:c(q)=int(n/13):v(q)=n-c(q)*13
 320 q=q+1:goto305
 325 gosub275:gosub100
-330 print"{up}hai fatto :":print"{down}{down}vinci :{rvof}"ft*pt
+330 print"{up}hai fatto :":print"{down}{down}vinci :{rvon}"ft*pt
 335 ifpt*ft>0thenprint"{down}{down}raddoppi s/n ?":goto345
 340 cr=cr+ft*pt:fori=0to2000:next:goto3
 345 geta$:ifa$<>"s"anda$<>"n"then345
 350 ifa$="n"thencr=cr+ft*pt:goto3
 355 print"{clr}"
-360 printtab(255)tab(220)"{rvof}credit"cr"{left} ";
+360 printtab(255)tab(220)"{rvon}credit"cr"{left} ";
 365 i=int(rnd(1)*51)
 370 c=int(i/13):v=i-c*13:p=0:print"{home}"
-375 print"{rvon}UCCI":print"{SHIFT--}{CBM-+}{CBM-+}{SHIFT--}{blu}alte=9,10,i,q,k,a":print"{rvon}{SHIFT--}{CBM-+}{CBM-+}{SHIFT--}":print"{SHIFT--}{CBM-+}{CBM-+}{SHIFT--}{blu}basse=2,3,4,5,6,7
-380 print"{rvon}{SHIFT--}{CBM-+}{CBM-+}{SHIFT--}":print"{rvon}{SHIFT--}{CBM-+}{CBM-+}{SHIFT--}{blu}8 neutro":print"{rvon}{SHIFT--}{CBM-+}{CBM-+}{SHIFT--}":print"JFFK{blu}"
+375 print"{rvof}UCCI":print"{SHIFT--}{CBM-+}{CBM-+}{SHIFT--}{blu}alte=9,10,i,q,k,a":print"{rvof}{SHIFT--}{CBM-+}{CBM-+}{SHIFT--}":print"{SHIFT--}{CBM-+}{CBM-+}{SHIFT--}{blu}basse=2,3,4,5,6,7
+380 print"{rvof}{SHIFT--}{CBM-+}{CBM-+}{SHIFT--}":print"{SHIFT--}{CBM-+}{CBM-+}{SHIFT--}{blu}8 neutro":print"{rvof}{SHIFT--}{CBM-+}{CBM-+}{SHIFT--}":print"JFFK{blu}"
 385 print"{down}alta(f1) o bassa(f7)?
 390 geta$:ifa$<>"{f1}"anda$<>"{f7}"then390
 410 print"{home}":gosub245
 415 ifv=7thenfori=1to2000:next:print"{down}{down}{down}{down}{down}{down}{down}{down}{down}{down}":goto335
-420 ifv>0andv<7thenifa$="?"then440
-430 ifv>7orv=0thenifa$="?"then440
+420 ifv>0andv<7thenifa$="{f7}"then440
+430 ifv>7orv=0thenifa$="{f1}"then440
 435 print"{down}{down}{down}{down}{down}{down}{down}{down}{down}{down}{down}{down}sbagliato":fori=1to2000:next:goto3
 440 ft=ft*2:print"{down}{down}{down}{down}{down}{down}{down}{down}{down}{down}{down}{down}giusto  {rvon}vinci "pt*ft"{rvof}":goto335
 450 print"{clr}{down}{down}{down}{down}{down}{down}{down}{down}{down}{rvon}  ti ho sbancato !!!  "
