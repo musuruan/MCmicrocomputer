@@ -33,7 +33,7 @@
 280 PRINT"   {LR} *****   {GN} *****   {YL} *****   {BK} *****  "
 290 PRINT"   {LR} *****   {GN} *****   {YL} *****   {BK} *****  "
 300 PRINT"   {LR} *****   {GN} *****   {YL} *****   {BK} *****  "
-310 PRINT"   {LR}{SHIFT-J}{SHIFT-*}{SHIFT-*}{SHIFT-*}{SHIFT-*}{SHIFT-*}{SHIFT-K}  {GN}{SHIFT-J}{SHIFT-*}{SHIFT-*}{SHIFT-*}{SHIFT-*}{SHIFT-*}{SHIFT-K}  {YL}{SHIFT-J}{SHIFT-*}{SHIFT-*}{SHIFT-*}{SHIFT-*}{SHIFT-*}{SHIFT-K}  {BK}{SHIFT-J}{SHIFT-*}{SHIFT-*}{SHIFT-*}{SHIFT-*}{SHIFT-*}{SHIFT-K} "
+310 PRINT"   {LR}{SHIFT-J}{SHIFT-*}{SHIFT-*}{SHIFT-*}{SHIFT-*}{SHIFT-*}{SHIFT-K}  {GN}{SHIFT-J}{SHIFT-*}{SHIFT-*}{SHIFT-*}{SHIFT-*}{SHIFT-*}{SHIFT-K}  {YL}{SHIFT-J}{SHIFT-*}{SHIFT-*}{SHIFT-*}{SHIFT-*}{SHIFT-*}{SHIFT-K}  {BK}{SHIFT-J}{SHIFT-*}{SHIFT-*}{SHIFT-*}{SHIFT-*}{SHIFT-*}{SHIFT-K}"
 311 PRINT:PRINT
 312 PRINT "   {SHIFT-U}{SHIFT-*}{SHIFT-*}{SHIFT-*}{SHIFT-*}{SHIFT-*}{SHIFT-I}  {SHIFT-U}{SHIFT-*}{SHIFT-*}{SHIFT-*}{SHIFT-*}{SHIFT-*}{SHIFT-I}  {SHIFT-U}{SHIFT-*}{SHIFT-*}{SHIFT-*}{SHIFT-*}{SHIFT-*}{SHIFT-I}  {SHIFT-U}{SHIFT-*}{SHIFT-*}{SHIFT-*}{SHIFT-*}{SHIFT-*}{SHIFT-I}"
 313 PRINT "   {SHIFT--}     {SHIFT--}  {SHIFT--}     {SHIFT--}  {SHIFT--}     {SHIFT--}  {SHIFT--}     {SHIFT--}"  
