@@ -1,0 +1,107 @@
+10 rem piano cartesiano
+20 rem per c/128
+30 rem by michele galante 1988
+40 rem terranuova br. (ar)
+50 color1,2:color4,12:graphic1,1:box1,60,70,260,130
+60 fora=60to260step10:draw1,a,70to144+a/10,0:next
+70 char,8,10,"*** piano cartesiano ***",1:char1,19,12,"by":char1,10,14,"michele galante 1988"
+80 getkeya$
+90 graphic0,1
+100 trap1030
+110 cf=15:cm=14
+120 fora=1to12:readn:nn$=nn$+chr$(n):nexta:data145,17,29,157,133,134,135,136,49,50,51,52
+130 color0,13:color4,13
+140 print"(clr)(down)(down)(down)(rght)(rght)(rght)batti la legge:(down)(down)":input"(wht)y= ";a$
+150 print"(down)(down)(down)(rght)(rght)(rght)(yel)batti i valori per x:"
+160 input"(wht)(down)(down)valore minimo";xp
+170 input"(down)valore massimo";xg:fast
+180 print"(clr)210deffna(x)="a$:print"goto210"
+190 poke208,10:poke842,19:poke843,13:poke844,13
+200 end
+210 deffna(x)=x^2
+220 poke208,0:print"(clr)";:slow
+230 fora=xptoxg
+240 va=fna(a)
+250 aa$=str$(va):ifee=1thenee=0:aa$="(impossibile)"
+260 print"x="a,"y="aa$:nexta
+270 print"(up)":printspc(13)"-premi un tasto-";
+280 getkeya$
+290 ix=10:iy=10
+300 ax=199:ay=0:print"(clr)"
+310 key1,chr$(133):key3,chr$(134):key5,chr$(135):key7,chr$(136)
+320 printchr$(14):window0,0,39,24
+330 window0,0,39,24:print"(clr)(wht)OPZIONI(yel)"
+340 print"(down)(down)F1 = sposta l'asse X di 20 in su'"
+350 print"F3 = sposta l'asse X di 20 in giu'"
+360 print"F5 = sposta l'asse Y di 20 a sinistra"
+370 print"F7 = sposta l'asse Y di 20 a destra"
+380 print"(down)I tasti cursore spostano gli assi di 1"
+390 print"(down)(down)1 = cambio colore"
+400 print"2 = cambio legge"
+410 print"3 = ingrandimento"
+420 print"4 = grafico"
+430 print"(down)(down)Questo indice viene visualizzato "
+440 print"premendo il tasto 0."
+450 getkeya$:window0,20,39,24,1
+460 oninstr(nn$,a$)goto480,490,500,510,520,530,540,550,580,790,970,800
+470 goto450
+480 ax=ax-1:goto560
+490 ax=ax+1:goto560
+500 ay=ay+1:goto570
+510 ay=ay-1:goto570
+520 ax=ax-20:goto560
+530 ax=ax+20:goto560
+540 ay=ay-20:goto570
+550 ay=ay+20:goto570
+560 print"(clr)(lgrn)asse X="199-ax:goto450
+570 print"(clr)(lgrn)asse Y="ay:goto450
+580 window0,0,39,24:print"(clr)(down)(wht)COLORI:"
+590 print"(down)(down)(yel)1 nero    (blk)(rvs)(cbm-@)(yel)","(off) 9 arancio       (lred)(rvs)(cbm-@)(yel)"
+600 print"2 bianco  (wht)(rvs)(cbm-@)(yel)","(off)10 marrone       (brn)(rvs)(cbm-@)(yel)"
+610 print"3 rosso   (red)(rvs)(cbm-@)(yel)","(off)11 rosso chiaro  (lred)(rvs)(cbm-@)(yel)"
+620 print"4 azzurro (cyn)(rvs)(cbm-@)(yel)","(off)12 grigio scuro  (gry1)(rvs)(cbm-@)(yel)"
+630 print"5 porpora (pur)(rvs)(cbm-@)(yel)","(off)13 grigio        (gry2)(rvs)(cbm-@)(yel)"
+640 print"6 verde   (grn)(rvs)(cbm-@)(yel)","(off)14 verde chiaro  (lgrn)(rvs)(cbm-@)(yel)"
+650 print"7 blu     (blu)(rvs)(cbm-@)(yel)","(off)15 blu chiaro    (lblu)(rvs)(cbm-@)(yel)"
+660 print"8 giallo  (yel)(rvs)(cbm-@)(off)","16 grigio chiaro (gry3)(rvs)(cbm-@)(yel)"
+670 print"(down)(down)(wht)ZONE DA COLORARE:(yel)"
+680 print"(down)1 sfondo"
+690 print"2 margine"
+700 print"3 grafico"
+710 print"(down)Quando hai finito premi F1."
+720 window0,23,39,24:print"(clr)(lgrn)Zona da colorare":getkeyz$:ifz$=chr$(133)then330
+730 ifval(z$)>3then720
+740 onval(z$)goto760,770,780
+750 goto720
+760 input"(clr)Colore per lo sfondo";c:ifc>16orc<1then760:elsecf=c:goto720
+770 input"(clr)Colore per il margine";c:ifc>16orc<1then770:elsecm=c:goto720
+780 input"(clr)Colore per il grafico";c:ifc>16orc<1then780:elsecolor1,c:goto720
+790 window0,0,39,24,1:color0,13:color4,13:printchr$(142):run100
+800 fast:color0,cf:color4,cm:graphic1,1:v1=ax+1
+810 ifay<320anday>=0thendraw1,ay,0toay,199
+820 ifax<200andax>=0thendraw1,0,axto319,ax
+830 fora=0-ayto319-ay:yy=a
+840 va=fna(a/ix)*iy
+850 xx=int(va):ifax-xx>=0andax-xx<200theny1=yy:x1=xx:goto890
+860 nexta
+870 graphic0,1:window0,0,39,24:color0,13:color4,13:print"(clr)(yel)(down)(down)(down)(down)(down)(rght)(rght)Il grafico non viene visualizzato":print"(down)(rght)(rght)in questa parte del piano cartesiano.":slow
+880 printspc(13)"(down)(down)(down)(down)(down)(down)(lgrn)-premi un tasto-":getkeya$:goto330
+890 slow:y2=yy
+900 fora=y2to319-ay
+910 va=fna(a/ix)*iy:v1=va
+920 x2=int(va):draw1,y1+ay,ax-x1toa+ay,ax-x2
+930 geta$:ifa$="0"thengraphic0,1:color0,13:color4,13:goto450
+940 y1=a:x1=x2
+950 nexta
+960 getkeya$:ifa$="0"thengraphic0,1:color0,13:color4,13:goto450:elsegoto960
+970 window0,0,39,24
+980 print"(clr)(down)(down)(down) Ingr. attuale sull'asse X:"ix
+990 print"(down) Ingr. attuale sull'asse Y:"iy
+1000 print"(down)(down)(down)(yel) Ingrandimento sull'asse X (wht)";:inputix
+1010 print"(down)(yel) Ingrandimento sull'asse Y (wht)";:inputiy
+1020 goto330
+1030 ifel=920thenresumenext
+1040 ifel=240or el=840or el=910thenee=1:va=v1:resumenext
+1050 window0,0,39,24,1:graphic0:slow
+1060 print"errore "err$(er):print"in"el:help
+
