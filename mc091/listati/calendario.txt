@@ -1,0 +1,205 @@
+10 rem calendario per c-128
+20 rem by michele galante 1988
+30 gosub1830
+40 fast:a3=1
+50 key1,chr$(1):key3,chr$(2):key5,chr$(3)
+60 fora=1to6:ar$(a)="il":nexta:ar$(7)="la"
+70 dimng(12):fora=1to12:readng(a):nexta
+80 dimm$(12),m1$(12):fora=1to12:readm$(a):m1$(a)="         ":mid$(m1$(a),5-int(len(m$(a))/2),len(m$(a)))=m$(a):nexta
+90 fora=1to7:readgs$(a):gx$(a)="         ":mid$(gx$(a),5-int(len(gs$(a))/2),len(gs$(a)))=gs$(a):nexta
+100 fora=0to9:readn$(a):nexta
+110 a$(2)="6123467124567234571235671345"
+120 a$(1)="6543176532175432765421764321"
+130 s(2)=-1:s(1)=1
+140 color4,4:color0,4
+150 print"(clr)":char,16,2,"(blu)(swlc)OPZIONI"
+160 char,16,3,"(shift-*)(shift-*)(shift-*)(shift-*)(shift-*)(shift-*)(shift-*)"
+170 char,5,6,"1 -inserimento data"
+180 char,5,8,"2 -regolazione avanzamento"
+190 char,5,10,"3 -calcolo del tempo":slow
+200 getkeya$
+210 onval(a$)goto220,1500,1560:goto200
+220 print"(clr)SCEGLI IL MODO PER INSERIRE LA DATA:"
+230 print"(shift-*)(shift-*)(shift-*)(shift-*)(shift-*)(shift-*)(shift-*)(shift-*)(shift-*)(shift-*)(shift-*)(shift-*)(shift-*)(shift-*)(shift-*)(shift-*)(shift-*)(shift-*)(shift-*)(shift-*)(shift-*)(shift-*)(shift-*)(shift-*)(shift-*)(shift-*)(shift-*)(shift-*)(shift-*)(shift-*)(shift-*)(shift-*)(shift-*)(shift-*)(shift-*)(shift-*)"
+240 print"(down)(down)(down)1 ANNO-MESE-GIORNO del MESE"
+250 print"(down)2 ANNO-GIORNO dell'ANNO"
+260 print"(down)3 ANNO-MESE-# GIORNO della SETTIMANA"
+270 print"(down)4 ANNO-# GIORNO della SETTIMANA"
+280 print"(down)5 ANNO-SETTIMANA-GIORNO della SETTIMANA"
+290 getkeya$:onval(a$)goto1000,390,460,600,740
+300 goto290
+310 print"(clr)INSERISCI LA DATA:"
+320 print"(shift-*)(shift-*)(shift-*)(shift-*)(shift-*)(shift-*)(shift-*)(shift-*)(shift-*)(shift-*)(shift-*)(shift-*)(shift-*)(shift-*)(shift-*)(shift-*)(shift-*)(shift-*)"
+330 input"(down)(down)ANNO";an
+340 ng(2)=28:gi=0
+350 ifan/100=int(an/100)then370
+360 ifan/4=int(an/4)thenng(2)=29:return
+370 ifan/400=int(an/400)thenng(2)=29
+380 return
+390 gosub310:mm=0:m=1
+400 fora=1to12:mm=mm+ng(a):nexta
+410 print"(down)GIORNO dell'ANNO: (1-"right$(str$(mm),3)")";:inputgi:ifgi>mmorgi<1thenprint"(up)(up)(up)":goto410
+420 gm=gi:fora=1to12:ifgm-ng(a)>0thengm=gm-ng(a):m=m+1:nexta
+430 print"(down)(down)Il"gi"(left)(cbm-V) giorno del"an"."
+440 print"(down)Confermi (s/n) ":getkeya$:ifa$="n"then390
+450 goto1050
+460 gosub310
+470 input"(down)MESE (1-12)";m:ifm<1orm>12thenprint"(up)(up)(up)":goto470
+480 gm=1:gosub930
+490 input"(down)GIORNO della SETTIMANA (1-7)";gs%:ifgs%<1orgs%>7thenprint"(up)(up)(up)":goto490
+500 input"(down)NUMERO";n%:gm=(n%-1)*7
+510 ifgs>gs%thengm=gm+(8-gs)+gs%:goto530
+520 gm=gm+gs%-gs+1
+530 ifgm>ng(m)thenbegin:print"(down)IMPOSSIBILE"
+540 print"(down)non esiste "ar$(gs%)n%"(left)(cbm-V) "gs$(gs%)
+550 print"nel "m$(m)" del"an".":getkeya$:goto460
+560 bend
+570 print"(down)(down)"ar$(gs%)n%"(left)(cbm-V) "gs$(gs%)" del "m$(m) an"."
+580 print"(down)Confermi (s/n)":getkeya$:ifa$="n"then460
+590 goto1050
+600 gosub310:m=1:gm=1:gosub930
+610 input"(down)GIORNO della SETTIMANA (1-7)";gs%:ifgs%<1orgs%>7thenprint"(up)(up)(up)":goto610
+620 input"(down)NUMERO";n%:gi=(n%-1)*7
+630 ifgs>gs%thengi=gi+(8-gs)+gs%:goto650
+640 gi=gi+gs%-gs+1
+650 mm=0:fora=1to12:mm=mm+ng(a):nexta
+660 ifgi>mmthenbegin:print"(down)IMPOSSIBILE"
+670 print"(down)non esiste "ar$(gs%)n%"(left)(cbm-V) "gs$(gs%)
+680 print"nel"an".":getkeya$:goto600
+690 bend
+700 print"(down)(down)"ar$(gs%)n%"(left)(cbm-V) "gs$(gs%)" del"an"."
+710 print"(down)Confermi (s/n)":getkeya$:ifa$="n"then600
+720 gm=gi:fora=1to12:ifgm-ng(a)>0thengm=gm-ng(a):m=m+1:nexta
+730 goto1050
+740 gosub310:m=1:gm=1:gosub930
+750 input"(down)SETTIMANA";s
+760 input"(down)GIORNO della SETTIMANA (1-7)";gs:ifgs<1orgs>7thenprint"(up)(up)(up)":goto760
+770 gi=gs+7*s-14+(8-g1)
+780 mm=0:fora=1to12:mm=mm+ng(a):nexta
+790 ifgi>mmthenbegin:print"(down)IMPOSSIBILE"
+800 print"(down)non esiste "ar$(gs)" "gs$(gs)
+810 print"della"s"(left)(cbm-V)settimana"
+820 print"del"an".":getkeya$:goto740
+830 bend
+840 print"(down)(down)"ar$(gs)" "gs$(gs)" della"s"(left)(cbm-V)settimana":print"del"an"."
+850 print"(down)Confermi (s/n)":getkeya$:ifa$="n"then740
+860 gm=gi:fora=1to12:ifgm-ng(a)>0thengm=gm-ng(a):m=m+1:nexta
+870 goto1050
+880 ng(2)=28:gi=0
+890 ifan/100=int(an/100)then920
+900 ifan/4=int(an/4)thenng(2)=29
+910 goto930
+920 ifan/400=int(an/400)thenng(2)=29
+930 fora=0tom-1:gi=gi+ng(a):nexta:gi=gi+gm
+940 ifan>=2000thenx=2:elsex=1
+950 n=abs(an-2000)+1-(int(abs(an-2000)/28)*28)
+960 nn=val(mid$(a$(x),n,1))
+970 nn=nn+s(x)*(int(abs(an-(1999+x))/100)-int(abs(an-(1999+x))/400)):g1=nn-int((nn-1)/7)*7
+980 xx=gi-int((gi-1)/7)*7:gs=(xx+g1-1-int((xx+g1-2)/7)*7):s=(gi-(8-g1)-gs)/7+2
+990 return
+1000 gosub310
+1010 input"(down)MESE (1-12)";m:ifm<1orm>12thenprint"(up)(up)(up)":goto1010
+1020 print"(down)GIORNO del MESE (1-"right$(str$(ng(m)),2)")";:inputgm:ifgm<1orgm>ng(m)thenprint"(up)(up)(up)":goto1020
+1030 print"(down)Il"gm" "m$(m)an"."
+1040 print"(down)Confermi (s/n)":getkeya$:ifa$="n"then1000
+1050 gosub880
+1060 fast:printchr$(142)
+1070 print"(clr)(rvs)(lblu)(shift-£)            N"
+1080 print"(rvs)(pur)             (lblu) "
+1090 print"(rvs)(pur) (cbm-d)(cbm-i)(cbm-i)(cbm-i)(cbm-i)(cbm-i)(cbm-i)(cbm-i)(cbm-i)(cbm-i)(cbm-f) (lblu) "
+1100 print"(rvs)(pur) (off)(cbm-k)         (rvs)(cbm-k) (lblu) "
+1110 print"(rvs)(pur) (cbm-c)(off)(cbm-i)(cbm-i)(cbm-i)(cbm-i)(cbm-i)(cbm-i)(cbm-i)(cbm-i)(cbm-i)(rvs)(cbm-v) (lblu) "
+1120 print"(rvs)(pur) (cbm-o)(cbm-o)(cbm-o)(cbm-o)(cbm-o)(cbm-o)(cbm-o)(cbm-o)(cbm-o)(cbm-o)(cbm-o) (lblu) "
+1130 print"(rvs)(pur) (rght)(rght)(rght)(rght)(rght)(rght)(rght)(rght)(rght)(rght)(rght) (lblu) "
+1140 print"(rvs)(pur) (cbm-y)(cbm-y)(cbm-y)(cbm-y)(cbm-y)(cbm-y)(cbm-y)(cbm-y)(cbm-y)(cbm-y)(cbm-y) (lblu) "
+1150 print"(rvs)(pur)             (lblu) "
+1160 print"(rvs)(pur)  (rght)(rght)(rght)(rght)(rght)(rght)(rght)(rght)(rght)  (lblu) "
+1170 print"(rvs)(pur)  (rght)(rght)(rght)(rght)(rght)(rght)(rght)(rght)(rght)  (lblu) "
+1180 print"(rvs)(pur)  (rght)(rght)(rght)(rght)(rght)(rght)(rght)(rght)(rght)  (lblu) "
+1190 print"(rvs)(pur)  (rght)(rght)(rght)(rght)(rght)(rght)(rght)(rght)(rght)  (lblu) "
+1200 print"(rvs)(pur)  (rght)(rght)(rght)(rght)(rght)(rght)(rght)(rght)(rght)  (lblu) "
+1210 print"(rvs)(pur)  (rght)(rght)(rght)(rght)(rght)(rght)(rght)(rght)(rght)  (lblu) "
+1220 print"(rvs)(pur)  (rght)(rght)(rght)(rght)(rght)(rght)(rght)(rght)(rght)  (lblu) "
+1230 print"(rvs)(pur)             (lblu) "
+1240 print"(rvs)(pur) (cbm-p)(cbm-p)(cbm-p)(cbm-p)(cbm-p)(cbm-p)(cbm-p)(cbm-p)(cbm-p)(cbm-p)(cbm-p) (lblu) "
+1250 print"(rvs)(pur) (rght)(rght)(rght)(rght)(rght)(rght)(rght)(rght)(rght)(rght)(rght) (lblu) "
+1260 print"(rvs)(pur) (cbm-y)(cbm-y)(cbm-y)(cbm-y)(cbm-y)(cbm-y)(cbm-y)(cbm-y)(cbm-y)(cbm-y)(cbm-y) (lblu)(off)(shift-£)(blu)":slow
+1270 char,16,1,"(cbm-p)(cbm-p)(down)(left)(left)(rvs)f1(off) = avanti"
+1280 char,16,3,"(cbm-p)(cbm-p)(down)(left)(left)(rvs)f3(off) = indietro"
+1290 char,16,5,"(cbm-p)(cbm-p)(down)(left)(left)(rvs)f5(off) = opzioni"
+1300 char,2,3:printusing"=########";str$(an)
+1310 char,2,6,gx$(gs)
+1320 char,3,10,n$(val(mid$(str$(gm),len(str$(gm))-1,1)))
+1330 char,7,10,n$(val(right$(str$(gm),1)))
+1340 char,2,18,"(off)"+m1$(m)
+1350 char,0,21,"giorno n."+str$(gi)+"   "
+1360 char,0,23,"settimana n."+str$(s)+"   "
+1370 getkeya$:onasc(a$)goto1400,1450,1390
+1380 goto1370
+1390 fast:goto140
+1400 an=an+a1
+1410 ifa2>0thenan=an+int((m+a2-1)/12):m=m+a2-int((m+a2-1)/12)*12
+1420 ifa3>0thenbegin:gm=gm+a3:dountilgm<=ng(m):gm=gm-ng(m):m=m+1:ifm=13thenm=1:an=an+1
+1430 loop:bend
+1440 gosub880:goto1270
+1450 ifa3>0thenbegin:gm=gm-a3:dountilgm>0:m=m-1:ifm=0thenm=12:an=an-1
+1460 gm=gm+ng(m):loop:bend
+1470 ifa2>0thenan=an+int((m-a2-1)/12):m=m-a2+int((m-a2-1)/12)*-12
+1480 an=an-a1
+1490 gosub880:goto1270
+1500 print"(clr)REGOLAZIONE AVANZAMENTO"
+1510 print"(shift-*)(shift-*)(shift-*)(shift-*)(shift-*)(shift-*)(shift-*)(shift-*)(shift-*)(shift-*)(shift-*)(shift-*)(shift-*)(shift-*)(shift-*)(shift-*)(shift-*)(shift-*)(shift-*)(shift-*)(shift-*)(shift-*)(shift-*)"
+1520 input"(down)(down)(down)Numero anni";a1
+1530 input"(down)Numero mesi";a2
+1540 input"(down)Numero giorni";a3
+1550 ifm=0then150:elsegoto1060
+1560 print"(clr) CALCOLO DEL TEMPO"
+1570 print"(shift-*)(shift-*)(shift-*)(shift-*)(shift-*)(shift-*)(shift-*)(shift-*)(shift-*)(shift-*)(shift-*)(shift-*)(shift-*)(shift-*)(shift-*)(shift-*)(shift-*)(shift-*)"
+1580 print"(down)(down)Inserisci la 1(cbm-v) data:"
+1590 input"(down)(down)ANNO";t1
+1600 ng(2)=28
+1610 ift1/100=int(t1/100)then1630
+1620 ift1/4=int(t1/4)thenng(2)=29
+1630 ift1/400=int(t1/400)thenng(2)=29
+1640 input"(down)MESE (1-12)";t2:ift2<1ort2>12thenprint"(up)(up)(up)":goto1640
+1650 print"(down)GIORNO del MESE (1-"right$(str$(ng(t2)),2)")";:inputt3:ift3<1ort3>ng(t2)thenprint"(up)(up)(up)":goto1650
+1660 print"(down)(down)Inserisci la 2(cbm-v) data:"
+1670 input"(down)(down)ANNO";t4
+1680 ng(2)=28
+1690 ift4/100=int(t4/100)then1710
+1700 ift4/4=int(t4/4)thenng(2)=29
+1710 ift4/400=int(t4/400)thenng(2)=29
+1720 input"(down)MESE (1-12)";t5:ift5<1ort5>12thenprint"(up)(up)(up)":goto1720
+1730 print"(down)GIORNO del MESE (1-"right$(str$(ng(t5)),2)")";:inputt6:ift6<1ort6>ng(t5)thenprint"(up)(up)(up)":goto1730
+1740 x2=(t4-t1+1)*12-(t2+12-t5):x1=int(x2/12):x2=x2-x1*12
+1750 ift6>=t3thenx3=t6-t3:goto1780
+1760 x2=x2-1:ifx2=-1thenx2=11:x1=x1-1
+1770 x3=t6+(ng(t5-1)-t3)
+1780 print"(clr)Data n. 1 ="t3;m$(t2);t1
+1790 print"(down)Data n. 2 ="t6;m$(t5);t4
+1800 print"(down)(down)(down)RISULTATO:":print"(down)(down)"x1"anni,"x2"mesi e"x3"giorni."
+1810 getkeya$
+1820 ifm=0then150:elsegoto1060
+1830 print"(clr)":char,0,7,"":color0,5:color4,6
+1840 print"  U(shift-*)I U(shift-*)I (cbm-r)  (cbm-r)(shift-*)(cbm-s) (cbm-s) (cbm-r) (cbm-r)(shift-*)I U(shift-*)I (cbm-r)(shift-*)I (cbm-r) U(shift-*)I" 
+1850 print"  (shift--)   (shift--) (shift--) (shift--)  (shift--)   (cbm-q)I(shift--) (shift--) (shift--) (shift--) (shift--) (shift--) (shift--) (shift--) (shift--) (shift--)"
+1860 print"  (shift--)   (cbm-q)(shift-*)(cbm-w) (shift--)  (cbm-q)(cbm-w)  (shift--)(shift--)(shift--) (shift--) (shift--) (cbm-q)(shift-*)(cbm-w) (cbm-q)(cbm-r)K (shift--) (shift--) (shift--)"
+1870 print"  (shift--)   (shift--) (shift--) (shift--)  (shift--)   (shift--)J(cbm-w) (shift--) (shift--) (shift--) (shift--) (shift--)(cbm-z)I (shift--) (shift--) (shift--)"
+1880 print"  J(shift-*)K (cbm-e) (cbm-e) (cbm-e)C(cbm-x)(cbm-e)(shift-*)(cbm-x) (cbm-e) (cbm-z) (cbm-e)(shift-*)K (cbm-e) (cbm-e) (cbm-e) (cbm-e) (cbm-e) J(shift-*)K"
+1890 printtab(19)"(down)(down)by"
+1900 printtab(10)"(wht)(down)michele galante 1988"
+1910 getkeya$:return
+1920 data31,28,31,30,31,30,31,31,30,31,30,31
+1930 datagennaio,febbraio,marzo,aprile,maggio,giugno,luglio,agosto,settembre,ottobre,novembre,dicembre
+1940 datalunedi,martedi,mercoledi,giovedi,venerdi,sabato,domenica
+1950 data"(rvs)   (down)(left)(left)(left)(rvs) (off) (rvs) (down)(left)(left)(left) (off) (rvs) (down)(left)(left)(left) (off) (rvs) (down)(left)(left)(left)   "
+1960 data"(off) (rvs) (off) (down)(left)(left)(left)(rvs)  (off) (down)(left)(left)(left) (rvs) (off) (down)(left)(left)(left) (rvs) (off) (down)(left)(left)(left)(rvs)   "
+1970 data"(rvs)   (down)(left)(left)(left)(off)  (rvs) (down)(left)(left)(left)   (down)(left)(left)(left) (off)  (down)(left)(left)(left)(rvs)   "
+1980 data"(rvs)   (down)(left)(left)(left)(off)  (rvs) (down)(left)(left)(left)(off) (rvs)  (down)(left)(left)(left)(off)  (rvs) (down)(left)(left)(left)   "
+1990 data"(rvs) (off) (rvs) (down)(left)(left)(left) (off) (rvs) (down)(left)(left)(left) (off) (rvs) (down)(left)(left)(left)  (down)(left)(left)(left)(off)   (rvs) "
+2000 data"(rvs)   (down)(left)(left)(left) (off)  (down)(left)(left)(left)(rvs)   (down)(left)(left)(left)(off)  (rvs) (down)(left)(left)(left)   "
+2010 data"(rvs)   (down)(left)(left)(left) (off)  (down)(left)(left)(left)(rvs)   (down)(left)(left)(left) (off) (rvs) (down)(left)(left)(left)   "
+2020 data"(rvs)   (down)(left)(left)(left)(off) (rvs)(shift-£)(off)(shift-£)(down)(left)(left)(left)(rvs)(shift-£)(off)(shift-£) (down)(left)(left)(left)(rvs) (off)  (down)(left)(left)(left)(rvs) (off)  "
+2030 data"(rvs)   (down)(left)(left)(left) (off) (rvs) (down)(left)(left)(left)   (down)(left)(left)(left) (off) (rvs) (down)(left)(left)(left)   "
+2040 data"(rvs)   (down)(left)(left)(left) (off) (rvs) (down)(left)(left)(left)   (down)(left)(left)(left)(off)  (rvs) (down)(left)(left)(left)   "
+
