@@ -1,0 +1,17 @@
+1 REM *********************************
+2 REM *                               *
+3 REM *     S   C   R   O   L   L     *
+4 REM *                               *
+5 REM *   ESEMPIO DI SCROLLING FINE   *
+6 REM * SENZA USO DEL RASTER REGISTER *
+7 REM *                               *
+8 REM *********************************
+10 POKE53265,PEEK(53265)AND247
+20 PRINT"(CLR)(DOWN)(DOWN)(DOWN)(DOWN)(DOWN)(DOWN)(DOWN)(DOWN)(DOWN)(DOWN)(DOWN)(DOWN)(DOWN)(DOWN)(DOWN)(DOWN)(DOWN)(DOWN)(DOWN)(DOWN)(DOWN)(DOWN)";
+30 POKE53265,(PEEK(53265)AND248)OR7
+40 PRINT" **** SFARFALLAMENTO DI SCHERMO **** "
+50 FORI=6TO0STEP-1
+60 POKE53265,(PEEK(53265)AND248)ORI
+70 REM FORT=1TO50:NEXT
+80 NEXT:GOTO30
+
