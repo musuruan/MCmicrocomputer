@@ -10,7 +10,7 @@
 130 dima$,b$,c$,y,i,t,n,x,d,a,b,tr,se,s1:q$=chr$(0):z$=q$+q$+q$
 140 dima$(145)
 150 poke53280,0:print"{cyn}{swlc}{clr}          **** ALFA-DISK ****
-160 print"{lblu}{down}  Inserisci il disco in cui desideri
+160 print"{lblu}{down}  Inserisci il disco di cui desideri
 170 print"  il directory alfabetico-
 180 print"{down}             {rvon}Premi un tasto{rvof}
 190 geta$:ifa$=""then190
