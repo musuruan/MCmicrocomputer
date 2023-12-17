@@ -12,7 +12,7 @@ Altri ancora sono stati acquisiti tramite scansione dalle pagine della rivista, 
 
 ## Come convertire tramite OCR
 
-Bisogna fare una scansione a 600dpi dei listati e processarli con un software OCR. La conversione a testo non viene male. Funziona meglio sui listati più recenti, diciamo dall'86 in poi, dove la qualità di stampa era migliore. Però ovviamente non fa miracoli e soprattutto non interpreta i caratteri grafici [petscii](https://www.c64-wiki.com/wiki/PETSCII_Codes_in_Listings) (il mio incubo!).
+Bisogna fare una scansione a 600dpi dei listati e processarli con un software OCR. Per migliorare la qualità si possono inspessire i caratteri usando GIMP ("Filtri" → "Generici" → "Erodi"). La conversione a testo non viene male. Funziona meglio sui listati più recenti, diciamo dall'86 in poi, dove la qualità di stampa era migliore. Però ovviamente non fa miracoli e soprattutto non interpreta i caratteri grafici [petscii](https://www.c64-wiki.com/wiki/PETSCII_Codes_in_Listings) (il mio incubo!).
 
 Come OCR uso [tesseract](https://tesseract-ocr.github.io/) oppure [scan2run](https://github.com/NAMIP-Computer-Museum/scan2run), che ha tanti problemi di giovinezza, ma riesce ad essere efficace dove tesseract ha qualche problema.
 
