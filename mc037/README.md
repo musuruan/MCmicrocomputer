@@ -2,7 +2,7 @@
 
 ![orchetes](./immagini/orchetes.png)
 
-La schermata con il castello è copiata da [Avventura 1](https://ready64.org/giochi/scheda_gioco/id/818/avventura-1).
+La schermata del castello è copiata da [Avventura 1](https://ready64.org/giochi/scheda_gioco/id/818/avventura-1).
 
 ![orchetes diff](./immagini/orchetes_diff.png)
 

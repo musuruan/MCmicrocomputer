@@ -31,12 +31,12 @@ $ hexdump -C flastape.bas
 Mmmm… Si vedono i DATA e i 3 asterischi che il programma usa per capire di aver 
 terminato l’inserimento in memoria.
 
-Rilancio VICE e provo a spostare l’area di inizio BASIC usando i comandi 
-presenti su MC: 
+Rilancio VICE e provo a spostare il puntatore all’area di inizio BASIC usando 
+i comandi presenti su MC: 
 
 `POKE44,16:POKE4096,0`
 
-Tada! Ecco che comparire il listato!
+Ta-da! Ecco che comparire il listato!
 
 ![](./immagini/flashtape_mclink_list.png)
 
