@@ -76,9 +76,9 @@ Questo invece quello preso da MC microcomputer:
 Si vede quindi che la differenza tra le due versioni è solo relativa alle 
 intestazioni che compaiono allo startup.
 
-![](./immagini/flashtape.png)
-
 ![](./immagini/flashtape_mclink.png)
+
+![](./immagini/flashtape.png)
 
 Ottimo! Almeno sono sicuro che il programma è stato digitato correttamente.
 
