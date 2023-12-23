@@ -1,6 +1,10 @@
 # Orchetes
 
-La schermata con il castello è copiata da [Avventura 1](https://ready64.org/giochi/scheda_gioco/id/5901/avventura-1-(fantasy)-versione-commerciale).
+![orchetes](./immagini/orchetes.png)
+
+La schermata con il castello è copiata da [Avventura 1](https://ready64.org/giochi/scheda_gioco/id/818/avventura-1).
+
+![orchetes diff](./immagini/orchetes_diff.png)
 
 Nell'articolo sulla rivista è spiegato che per andare a destra bisogna premere il tasto "S" (ed è implementato in questo modo nel programma). Nelle istruzioni, invece, viene detto di premere il tasto "D".
 
