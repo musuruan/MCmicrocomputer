@@ -1,0 +1,67 @@
+1 rem**********************
+2 rem*   fireman 2   by   *
+3 rem* adriano de minicis *
+4 rem**********************
+5 t1=20:t2=80:t=0:i=0::s1=36874:s2=s1+1:s3=s1+2:v=s1+4:j=0:pokev,15
+10 poke36879,8:print"{clr}{down}{rght}{rght}{wht}{CBM-@}{CBM-@}{CBM-@}{CBM-@}{CBM-@}{CBM-@}{CBM-@}{CBM-@}{CBM-@}{CBM-@}{CBM-@}{CBM-@}{CBM-@}{CBM-@}{CBM-@}{CBM-@}{CBM-@}":print"{down}{rght}{rght}{rght}{rght}f i r e m a n"
+20 print"{down}{rght}{rght}{CBM-T}{CBM-T}{CBM-T}{CBM-T}{CBM-T}{CBM-T}{CBM-T}{CBM-T}{CBM-T}{CBM-T}{CBM-T}{CBM-T}{CBM-T}{CBM-T}{CBM-T}{CBM-T}{CBM-T}":print"{rght}{rght}{cyn}adm software 1984"
+30 print"{down}{down}{down}{rght}{rght}{rght}{wht}tasti da usare:":print"{rght}{rght}{SHIFT-*}{SHIFT-*}{SHIFT-*}{SHIFT-*}{SHIFT-*}{SHIFT-*}{SHIFT-*}{SHIFT-*}{SHIFT-*}{SHIFT-*}{SHIFT-*}{SHIFT-*}{SHIFT-*}{SHIFT-*}{SHIFT-*}{SHIFT-*}{SHIFT-*}"
+40 print"{rght}{rght}{cyn}{CBM-@}{CBM-@}{left}{left}{down}{rvon} >{rvof}{wht} destra":print"{rght}{rght}{cyn}{CBM-@}{CBM-@}{left}{left}{down}{rvon} <{rvof}{wht} sinistra"
+50 print"{rght}{rght}{cyn}{CBM-@}{CBM-@}{left}{left}{down}{rvon}f1{rvof}{wht} nuova partita":print"{down}{rght}{rght}{cyn}{CBM-@}{CBM-@}{CBM-@}{CBM-@}{CBM-@}{CBM-@}{CBM-@}{CBM-@}{CBM-@}{CBM-@}{CBM-@}{CBM-@}{CBM-@}{CBM-@}{CBM-@}{CBM-@}{CBM-@}"
+60 print"{rght}{rght}{rvon}  premi un tasto "
+70 geta$:ifa$=""then70
+80 sc=0:m=4:lv=1:p=8165:k=4:w=-1:mn=0
+90 poke36869,255:poke36879,16:print"{clr}":sys7450:print"{home}{red}{rvon} score"tab(15)"men";m
+100 print"{rvon}  high"tab(15)"lev";lv:gosub630:gosub640:print
+110 fori=1to7:printtab(6)"{blu}         ":printtab(6)"{blk}lllllllll":next
+120 fori=1to4:printtab(6)"{blu}         ":next:poke8162,13:poke8163,14
+130 poke8184,15:poke8185,16:a=29:gosub520:a=37:fori=1to8:gosub520:next
+140 fort=0to1000:next
+150 x=int(rnd(1)*9):y=int(rnd(1)*6)
+160 c=7774+x+44*y:c1=12:n=c:gosub500
+170 ifp=8181andk=5thenk=4:pokep+1,k:sc=sc+20:gosub620
+180 gosub510:n=n+22:ifn<8164thengosub500:gosub510:goto170
+190 pokec,c1:z=peek(n):ifz=4then260
+200 m=m-1:poken,11:ifz<>32thenm=m-1:ifm<0thenm=0:sc=sc-500:gosub630
+210 ifz=0orz=2thenpokep+1,k+4
+220 ifz=1orz=3thenpokep+1,k+2
+230 print"{home}{red}{rvon}"spc(18);m:gosub600:ifm=0then400
+240 poken,z:pokep+1,k:ifz=5then320
+250 goto150
+260 poken,5:sc=sc+50:gosub590:poken,4:b=5+x:h=3
+270 l=int(rnd(1)*h):d=int(rnd(1)*2)*2-1
+280 z=b+(l+2)*d:ifz<0orz>16thend=-d:z=b+(l+2)*d
+290 b=z:gosub550:n=n+22:z=peek(n):ifz<>4then200
+300 ifh=3thenpoken,5:sc=sc+100:gosub590:poken,4:h=2:goto270
+310 k=5:poken,k:sc=sc+100:gosub580:mn=mn+1:ifmn=25andlv<6thenmn=0:goto350
+320 x=int(rnd(1)*9):y=int(rnd(1)*6):pa=8156-p-x+4*y+6
+330 forj=0topa:ifp=8181thenk=4:pokep+1,k:sc=sc+100:gosub620
+340 gosub510:next:goto160
+350 gosub510:ifp<8181then350
+360 k=4:pokep+1,k:sc=sc+20:gosub620:lv=lv+1:fort=0to500:next:t1=t1-2:t2=t2-8
+370 print"{home}{down}{red}{rvon}"spc(18);lv:print"{home}{blu}"spc(200)spc(225)"trxrt "+chr$(88+lv):restore
+380 fori=0to19:reada,b:pokes2,a:fort=0tob*120:next:pokes2,0:next
+390 print"{home}{blu}"spc(200)spc(225)"       ":sc=sc+500:gosub630:goto150
+400 print"{home}{blu}"spc(200)spc(224);:fori=1to9:printmid$("squr vxrw",i,1);:fort=0to150:next
+410 next:ifhi<scthenhi=sc:gosub640
+420 ifpeek(197)<>39then420
+430 goto80
+500 pokec,c1:c=n:c1=peek(c):poken,10:return
+510 a=peek(197)
+520 ifa=29andp>8164thenp=p-1:pokep,1+w:pokep+1,k:pokep+2,2+w:pokep+3,32:w=-w
+530 ifa=37andp<8181thenp=p+1:pokep-1,32:pokep,1+w:pokep+1,k:pokep+2,2+w:w=-w
+540 fort=0tot1:next:return
+550 n=n-22:fori=0toh-1:n=n-22:gosub500:gosub510:fort=0tot2:next:next:n=n-22
+560 fori=0tol:n=n+d:gosub500:gosub510:fort=0tot2:next:next:n=n+d
+570 fori=0toh:n=n+22:gosub500:gosub510:fort=0tot2:next:next:pokec,c1:return
+580 gosub630:fori=130to240step5:pokes2,i:fort=0to20:next:next:pokes2,0:return
+590 gosub630:fori=0to15:pokev,15-i:pokes2,i*6+130:fort=0to5:next:next:pokes2,0:pokev,15
+595 return
+600 fori=1to7:pokes1,asc(mid$("k{rvon}k{rvon}k{rvon}9",i,1))+100:fort=0to100:nextt:next
+610 fort=15to0step-.15:pokev,t:next:pokes1,0:fort=0to15:pokev,t:next:return
+620 gosub630:fort=150to250step5:pokes3,t:next:pokes3,0:return
+630 print"{home}{red}{rvon}"spc(7)right$("    "+str$(sc),6):return
+640 print"{home}{down}{red}{rvon}"spc(7)right$("    "+str$(hi),6):return
+700 data225,3,225,3,225,2,228,1,231,3,231,2,228,1,231,2,232,1
+710 data235,6,240,3,235,3,231,3,225,3,235,2,232,1,231,2,228,1,225,4,0,2
+

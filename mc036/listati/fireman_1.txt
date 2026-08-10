@@ -1,0 +1,27 @@
+1 rem**********************
+2 rem*   fireman 1   by   *
+3 rem* adriano de minicis *
+4 rem**********************
+10 poke36879,8:print"{clr}{down}{rght}{rght}{wht}{CBM-@}{CBM-@}{CBM-@}{CBM-@}{CBM-@}{CBM-@}{CBM-@}{CBM-@}{CBM-@}{CBM-@}{CBM-@}{CBM-@}{CBM-@}{CBM-@}{CBM-@}{CBM-@}{CBM-@}":print"{down}{rght}{rght}{rght}{rght}f i r e m e n"
+20 print"{down}{rght}{rght}{CBM-T}{CBM-T}{CBM-T}{CBM-T}{CBM-T}{CBM-T}{CBM-T}{CBM-T}{CBM-T}{CBM-T}{CBM-T}{CBM-T}{CBM-T}{CBM-T}{CBM-T}{CBM-T}{CBM-T}":print"{down}{rght}{rght}{cyn}adm software 1984"
+30 print"{down}{down}{down}{down}{rght}{rght}{rght}{wht}please wait ...{blk}"
+40 poke56,28:poke55,0:poke52,28:poke51,0
+50 fori=7450to7473:reada:pokei,a:next:fori=7168to7303:reada:pokei,a:next
+60 fori=0to13:reada:fort=0to7:p=peek(32768+a*8+t):poke7304+i*8+t,porp*2:nextt,i
+70 poke7339,214:fori=0to7:poke7424+i,0:next:poke198,2:poke631,131:poke632,13:end
+1000 rem*** routine lm ***
+1010 data169,2,162,43,157,0,150,202,16,250,169,0,162,231,157,43,150
+1020 data157,18,151,202,208,247,96
+1030 rem*** caratteri ***
+1040 data24,24,48,62,56,24,24,28,24,24,12,124,28,24,24,56
+1050 data24,24,48,62,56,24,36,54,24,24,12,124,28,24,36,108
+1060 data0,0,0,255,255,126,0,0,28,28,73,255,255,126,24,0
+1070 data0,0,0,192,240,124,31,7,0,12,44,200,242,124,31,7
+1080 data0,0,0,3,15,62,248,224,0,48,52,19,79,62,248,224
+1090 data28,93,73,127,28,28,54,99,0,0,0,0,8,127,93,20
+1100 data255,129,129,129,129,129,129,255,0,0,0,0,255,136,136,136
+1110 data0,0,0,128,224,208,200,196,136,255,253,248,253,207,48,48
+1120 data194,255,255,255,255,242,12,12
+1130 rem*** caratteri  larghi ***
+1140 data1,5,7,12,13,15,18,22,49,50,51,52,53,54
+
